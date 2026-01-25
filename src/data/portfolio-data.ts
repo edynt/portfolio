@@ -3,6 +3,7 @@ export const personalInfo = {
   title: "Fullstack Developer",
   subtitle: "Building modern web experiences",
   bio: "I'm a passionate fullstack developer with 5+ years of experience crafting beautiful, performant web applications. I specialize in React, Next.js, Node.js, and cloud technologies. I love turning complex problems into simple, elegant solutions.",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
   email: "hello@example.com",
   location: "Ho Chi Minh City, Vietnam",
   social: {

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { MapPin, Mail, Calendar } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
 
@@ -33,8 +34,15 @@ export default function AboutSection() {
             className="relative"
           >
             <div className="glass-card rounded-2xl p-4 relative z-10">
-              <div className="aspect-square rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-cyan/20 flex items-center justify-center">
-                <span className="text-8xl">👨‍💻</span>
+              <div className="aspect-square rounded-xl overflow-hidden">
+                <Image
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
             {/* Decorative elements */}
