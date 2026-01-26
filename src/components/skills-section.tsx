@@ -15,8 +15,8 @@ function SkillBar({
   return (
     <div className="mb-3">
       <div className="flex justify-between mb-1.5">
-        <span className="text-sm font-medium text-gray-300">{name}</span>
-        <span className="text-xs text-gray-500">{level}%</span>
+        <span className="text-sm font-medium text-theme-secondary">{name}</span>
+        <span className="text-xs text-theme-muted">{level}%</span>
       </div>
       <div className="h-1.5 rounded-full glass overflow-hidden">
         <motion.div
@@ -40,7 +40,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 bg-black/20">
+    <section id="skills" className="py-24 px-6 section-alt">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,8 +52,11 @@ export default function SkillsSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Technical <span className="gradient-text">Skills</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-theme-secondary max-w-2xl mx-auto">
             Technologies I use to build scalable, performant applications
+          </p>
+          <p className="text-theme-muted text-sm mt-2">
+            * Percentages indicate my confidence level with each technology
           </p>
         </motion.div>
 

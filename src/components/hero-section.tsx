@@ -49,7 +49,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="text-sm md:text-base text-gray-500 mb-4"
+          className="text-sm md:text-base text-theme-muted mb-4"
         >
           {personalInfo.tagline}
         </motion.p>
@@ -59,7 +59,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-gray-400 mb-4 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-theme-secondary mb-4 max-w-2xl mx-auto"
         >
           {personalInfo.subtitle}
         </motion.p>
@@ -69,7 +69,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="flex items-center justify-center gap-2 text-gray-500 text-sm mb-8"
+          className="flex items-center justify-center gap-2 text-theme-muted text-sm mb-8"
         >
           <MapPin size={14} />
           <span>{personalInfo.location}</span>
@@ -84,7 +84,7 @@ export default function HeroSection() {
         >
           <a
             href="#contact"
-            className="px-8 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-all font-medium shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40"
+            className="px-8 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-all font-medium shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40 text-white"
           >
             Let&apos;s Work Together
           </a>
@@ -116,10 +116,10 @@ export default function HeroSection() {
               <div className="text-2xl md:text-3xl font-bold gradient-text">
                 {highlight.metric}
               </div>
-              <div className="text-sm font-medium text-white">
+              <div className="text-sm font-medium text-theme-primary">
                 {highlight.label}
               </div>
-              <div className="text-xs text-gray-500">{highlight.description}</div>
+              <div className="text-xs text-theme-muted">{highlight.description}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -135,7 +135,7 @@ export default function HeroSection() {
             href={personalInfo.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-theme-secondary hover:text-theme-primary"
             aria-label="GitHub Profile"
           >
             <Github size={22} />
@@ -144,7 +144,7 @@ export default function HeroSection() {
             href={personalInfo.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-theme-secondary hover:text-theme-primary"
             aria-label="LinkedIn Profile"
           >
             <Linkedin size={22} />
@@ -161,7 +161,7 @@ export default function HeroSection() {
           opacity: { delay: 1 },
           y: { repeat: Infinity, duration: 2 },
         }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-400 hover:text-white transition-colors"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-theme-secondary hover:text-theme-primary transition-colors"
         aria-label="Scroll to About section"
       >
         <ArrowDown size={24} />

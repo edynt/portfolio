@@ -23,7 +23,7 @@ export default function AboutSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-theme-secondary max-w-2xl mx-auto">
             A passionate developer focused on building products that make a
             difference
           </p>
@@ -62,19 +62,19 @@ export default function AboutSection() {
               <div className="space-y-3">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-3 text-gray-300 hover:text-primary-400 transition-colors text-sm"
+                  className="flex items-center gap-3 text-theme-secondary hover:text-primary-400 transition-colors text-sm"
                 >
                   <Mail size={16} className="text-primary-400 flex-shrink-0" />
                   <span className="truncate">{personalInfo.email}</span>
                 </a>
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-3 text-gray-300 hover:text-primary-400 transition-colors text-sm"
+                  className="flex items-center gap-3 text-theme-secondary hover:text-primary-400 transition-colors text-sm"
                 >
                   <Phone size={16} className="text-primary-400 flex-shrink-0" />
                   <span>{personalInfo.phone}</span>
                 </a>
-                <div className="flex items-center gap-3 text-gray-300 text-sm">
+                <div className="flex items-center gap-3 text-theme-secondary text-sm">
                   <MapPin size={16} className="text-primary-400 flex-shrink-0" />
                   <span>{personalInfo.location}</span>
                 </div>
@@ -82,7 +82,7 @@ export default function AboutSection() {
 
               {/* Languages */}
               <div className="mt-6 pt-4 border-t border-white/10">
-                <h4 className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
+                <h4 className="text-sm font-medium text-theme-secondary mb-3 flex items-center gap-2">
                   <Globe size={14} />
                   Languages
                 </h4>
@@ -92,8 +92,8 @@ export default function AboutSection() {
                       key={lang.name}
                       className="flex justify-between text-sm"
                     >
-                      <span className="text-gray-300">{lang.name}</span>
-                      <span className="text-gray-500">{lang.level}</span>
+                      <span className="text-theme-secondary">{lang.name}</span>
+                      <span className="text-theme-muted">{lang.level}</span>
                     </div>
                   ))}
                 </div>
@@ -114,7 +114,7 @@ export default function AboutSection() {
             </h3>
 
             {/* Bio paragraphs */}
-            <div className="text-gray-400 mb-8 space-y-4 leading-relaxed">
+            <div className="text-theme-secondary mb-8 space-y-4 leading-relaxed">
               {personalInfo.bio.split("\n\n").map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
@@ -133,7 +133,7 @@ export default function AboutSection() {
                       size={16}
                       className="text-green-400 flex-shrink-0"
                     />
-                    <span className="text-gray-300">{competency}</span>
+                    <span className="text-theme-secondary">{competency}</span>
                   </div>
                 ))}
               </div>
@@ -146,21 +146,21 @@ export default function AboutSection() {
                 <div className="text-center p-4">
                   <div className="text-3xl mb-2">🚀</div>
                   <h5 className="font-medium text-sm mb-1">Performance</h5>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-theme-muted">
                     Optimize for speed and scalability
                   </p>
                 </div>
                 <div className="text-center p-4">
                   <div className="text-3xl mb-2">💡</div>
                   <h5 className="font-medium text-sm mb-1">Problem Solver</h5>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-theme-muted">
                     Turn complex problems into simple solutions
                   </p>
                 </div>
                 <div className="text-center p-4">
                   <div className="text-3xl mb-2">🤝</div>
                   <h5 className="font-medium text-sm mb-1">Team Player</h5>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-theme-muted">
                     Collaborate effectively across teams
                   </p>
                 </div>

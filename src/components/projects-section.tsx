@@ -19,7 +19,7 @@ export default function ProjectsSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-theme-secondary max-w-2xl mx-auto">
             Real-world projects that demonstrate my expertise in building
             scalable, performant applications
           </p>
@@ -68,7 +68,7 @@ export default function ProjectsSection() {
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                <p className="text-theme-secondary text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
 
@@ -90,7 +90,7 @@ export default function ProjectsSection() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
+                    className="flex items-center gap-2 text-sm text-theme-secondary hover:text-primary-400 transition-colors"
                   >
                     <ExternalLink size={16} />
                     Live Demo
@@ -99,7 +99,7 @@ export default function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
+                    className="flex items-center gap-2 text-sm text-theme-secondary hover:text-primary-400 transition-colors"
                   >
                     <Github size={16} />
                     Source Code
@@ -122,7 +122,7 @@ export default function ProjectsSection() {
             href={`${personalInfo.social.github}?tab=repositories`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 transition-colors text-gray-300 hover:text-white"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 transition-colors text-theme-secondary hover:text-theme-primary"
           >
             <Github size={18} />
             View More on GitHub

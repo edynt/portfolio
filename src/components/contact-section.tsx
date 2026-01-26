@@ -63,7 +63,7 @@ export default function ContactSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-theme-secondary max-w-2xl mx-auto">
             I&apos;m actively looking for new opportunities. Whether you have a
             role in mind or just want to chat, I&apos;d love to hear from you!
           </p>
@@ -80,7 +80,7 @@ export default function ContactSection() {
           <h3 className="text-2xl font-bold mb-3">
             Ready to Build Something Amazing?
           </h3>
-          <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+          <p className="text-theme-secondary mb-6 max-w-xl mx-auto">
             I&apos;m open to full-time remote positions, contract work, and
             interesting freelance projects. Let&apos;s discuss how I can
             contribute to your team.
@@ -88,7 +88,7 @@ export default function ContactSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={`mailto:${personalInfo.email}?subject=Job Opportunity`}
-              className="px-8 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-all font-medium shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40 flex items-center gap-2"
+              className="px-8 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-all font-medium shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40 flex items-center gap-2 text-white"
             >
               <Mail size={18} />
               Send Me an Email
@@ -114,7 +114,7 @@ export default function ContactSection() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-            <p className="text-gray-400 mb-8">
+            <p className="text-theme-secondary mb-8">
               Whether you&apos;re a recruiter, a startup founder, or someone
               looking to collaborate, I&apos;d love to connect. Drop me a
               message and I&apos;ll get back to you within 24 hours.
@@ -129,10 +129,10 @@ export default function ContactSection() {
                   <Mail className="text-primary-400" size={22} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  <p className="text-xs text-theme-muted uppercase tracking-wide">
                     Email
                   </p>
-                  <p className="text-white group-hover:text-primary-400 transition-colors font-medium">
+                  <p className="text-theme-primary group-hover:text-primary-400 transition-colors font-medium">
                     {personalInfo.email}
                   </p>
                 </div>
@@ -146,10 +146,10 @@ export default function ContactSection() {
                   <Phone className="text-primary-400" size={22} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  <p className="text-xs text-theme-muted uppercase tracking-wide">
                     Phone / WhatsApp
                   </p>
-                  <p className="text-white group-hover:text-primary-400 transition-colors font-medium">
+                  <p className="text-theme-primary group-hover:text-primary-400 transition-colors font-medium">
                     {personalInfo.phone}
                   </p>
                 </div>
@@ -160,10 +160,10 @@ export default function ContactSection() {
                   <MapPin className="text-primary-400" size={22} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  <p className="text-xs text-theme-muted uppercase tracking-wide">
                     Location
                   </p>
-                  <p className="text-white font-medium">
+                  <p className="text-theme-primary font-medium">
                     {personalInfo.location}
                   </p>
                   <p className="text-sm text-green-400">
@@ -175,7 +175,7 @@ export default function ContactSection() {
 
             {/* Social links */}
             <div>
-              <p className="text-sm text-gray-500 mb-3">Find me on</p>
+              <p className="text-sm text-theme-muted mb-3">Find me on</p>
               <div className="flex items-center gap-3">
                 <a
                   href={personalInfo.social.github}
@@ -227,7 +227,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2 text-gray-300"
+                  className="block text-sm font-medium mb-2 text-theme-secondary"
                 >
                   Your Name
                 </label>
@@ -247,7 +247,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2 text-gray-300"
+                  className="block text-sm font-medium mb-2 text-theme-secondary"
                 >
                   Your Email
                 </label>
@@ -267,7 +267,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium mb-2 text-gray-300"
+                  className="block text-sm font-medium mb-2 text-theme-secondary"
                 >
                   Subject
                 </label>
@@ -287,7 +287,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2 text-gray-300"
+                  className="block text-sm font-medium mb-2 text-theme-secondary"
                 >
                   Message
                 </label>
@@ -307,7 +307,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full py-3 rounded-xl bg-primary-600 hover:bg-primary-500 transition-colors font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-xl bg-primary-600 hover:bg-primary-500 transition-colors font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-white"
               >
                 {status === "loading" ? (
                   <>

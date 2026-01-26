@@ -6,7 +6,7 @@ import { experiences } from "@/data/portfolio-data";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 px-6 bg-black/20">
+    <section id="experience" className="py-24 px-6 section-alt">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,7 +18,7 @@ export default function ExperienceSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Work <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-theme-secondary max-w-2xl mx-auto">
             5+ years of building impactful products at leading companies
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ export default function ExperienceSection() {
                           <Building2 size={18} className="text-primary-400" />
                           <h3 className="text-xl font-bold">{exp.company}</h3>
                         </div>
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-theme-muted text-sm">
                           {exp.companyDescription}
                         </p>
                       </div>
@@ -64,10 +64,10 @@ export default function ExperienceSection() {
                         <span className="inline-block px-3 py-1 rounded-full glass text-primary-300 text-sm font-medium">
                           {exp.position}
                         </span>
-                        <div className="flex items-center gap-1 mt-2 text-gray-500 text-sm justify-end">
+                        <div className="flex items-center gap-1 mt-2 text-theme-muted text-sm justify-end">
                           <Calendar size={14} />
                           <span>{exp.period}</span>
-                          <span className="text-gray-600">•</span>
+                          <span className="text-theme-muted">•</span>
                           <span>{exp.duration}</span>
                         </div>
                       </div>
@@ -90,7 +90,7 @@ export default function ExperienceSection() {
                                 {project.type}
                               </span>
                             </div>
-                            <div className="flex items-center gap-3 text-sm text-gray-500 mt-1">
+                            <div className="flex items-center gap-3 text-sm text-theme-muted mt-1">
                               <span>{project.duration}</span>
                               <span>•</span>
                               <span className="text-primary-400">
@@ -105,7 +105,7 @@ export default function ExperienceSection() {
                           {project.highlights.slice(0, 4).map((highlight, idx) => (
                             <li
                               key={idx}
-                              className="flex items-start gap-2 text-sm text-gray-400"
+                              className="flex items-start gap-2 text-sm text-theme-secondary"
                             >
                               <Zap
                                 size={14}
@@ -121,13 +121,13 @@ export default function ExperienceSection() {
                           {project.technologies.slice(0, 5).map((tech) => (
                             <span
                               key={tech}
-                              className="px-2 py-0.5 text-xs rounded glass text-gray-300"
+                              className="px-2 py-0.5 text-xs rounded glass text-theme-secondary"
                             >
                               {tech}
                             </span>
                           ))}
                           {project.technologies.length > 5 && (
-                            <span className="px-2 py-0.5 text-xs rounded glass text-gray-500">
+                            <span className="px-2 py-0.5 text-xs rounded glass text-theme-muted">
                               +{project.technologies.length - 5}
                             </span>
                           )}

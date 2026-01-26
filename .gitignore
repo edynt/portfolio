@@ -29,3 +29,4 @@ dist-ssr
 .next
 /plans
 /docs
+.env
