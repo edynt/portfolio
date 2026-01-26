@@ -2,8 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Mail, Calendar, Phone, Download } from "lucide-react";
-import { personalInfo, education, softSkills } from "@/data/portfolio-data";
+import { MapPin, Mail, Phone, Globe, CheckCircle } from "lucide-react";
+import {
+  personalInfo,
+  coreCompetencies,
+  languages,
+} from "@/data/portfolio-data";
 
 export default function AboutSection() {
   return (
@@ -20,21 +24,22 @@ export default function AboutSection() {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Get to know more about my journey and what drives me
+            A passionate developer focused on building products that make a
+            difference
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Profile image & Education */}
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
+          {/* Left column - Avatar & Quick Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-8"
+            className="lg:col-span-2 space-y-6"
           >
             {/* Avatar */}
-            <div className="relative">
+            <div className="relative max-w-sm mx-auto lg:mx-0">
               <div className="glass-card rounded-2xl p-4 relative z-10">
                 <div className="aspect-square rounded-xl overflow-hidden">
                   <Image
@@ -51,104 +56,116 @@ export default function AboutSection() {
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-cyan/20 rounded-full blur-2xl" />
             </div>
 
-            {/* Education */}
-            <div className="glass-card rounded-2xl p-6">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <span className="text-2xl">🎓</span> Education
-              </h3>
-              <div className="space-y-4">
-                {education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="border-l-2 border-primary-500/30 pl-4"
-                  >
-                    <p className="font-medium text-sm">{edu.institution}</p>
-                    <p className="text-gray-400 text-sm">{edu.degree}</p>
-                    <p className="text-gray-500 text-xs">
-                      {edu.period} • GPA: {edu.gpa}
-                    </p>
-                  </div>
-                ))}
+            {/* Contact Info Card */}
+            <div className="glass-card rounded-2xl p-6 max-w-sm mx-auto lg:mx-0">
+              <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+              <div className="space-y-3">
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="flex items-center gap-3 text-gray-300 hover:text-primary-400 transition-colors text-sm"
+                >
+                  <Mail size={16} className="text-primary-400 flex-shrink-0" />
+                  <span className="truncate">{personalInfo.email}</span>
+                </a>
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="flex items-center gap-3 text-gray-300 hover:text-primary-400 transition-colors text-sm"
+                >
+                  <Phone size={16} className="text-primary-400 flex-shrink-0" />
+                  <span>{personalInfo.phone}</span>
+                </a>
+                <div className="flex items-center gap-3 text-gray-300 text-sm">
+                  <MapPin size={16} className="text-primary-400 flex-shrink-0" />
+                  <span>{personalInfo.location}</span>
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <h4 className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
+                  <Globe size={14} />
+                  Languages
+                </h4>
+                <div className="space-y-2">
+                  {languages.map((lang) => (
+                    <div
+                      key={lang.name}
+                      className="flex justify-between text-sm"
+                    >
+                      <span className="text-gray-300">{lang.name}</span>
+                      <span className="text-gray-500">{lang.level}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Content */}
+          {/* Right column - Bio & Competencies */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="lg:col-span-3"
           >
             <h3 className="text-2xl font-semibold mb-4">
-              Passionate about creating digital experiences
+              Building scalable solutions that drive business growth
             </h3>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              {personalInfo.bio}
-            </p>
 
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="p-2 rounded-lg glass">
-                  <MapPin size={18} className="text-primary-400" />
-                </div>
-                <span>{personalInfo.location}</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="p-2 rounded-lg glass">
-                  <Mail size={18} className="text-primary-400" />
-                </div>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="hover:text-primary-400 transition-colors"
-                >
-                  {personalInfo.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="p-2 rounded-lg glass">
-                  <Phone size={18} className="text-primary-400" />
-                </div>
-                <a
-                  href={`tel:${personalInfo.phone}`}
-                  className="hover:text-primary-400 transition-colors"
-                >
-                  {personalInfo.phone}
-                </a>
-              </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="p-2 rounded-lg glass">
-                  <Calendar size={18} className="text-primary-400" />
-                </div>
-                <span>5+ years of experience</span>
-              </div>
+            {/* Bio paragraphs */}
+            <div className="text-gray-400 mb-8 space-y-4 leading-relaxed">
+              {personalInfo.bio.split("\n\n").map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
 
-            {/* Soft Skills */}
+            {/* Core Competencies */}
             <div className="mb-8">
-              <h4 className="text-sm font-medium text-gray-400 mb-3">
-                Soft Skills
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {softSkills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 text-sm rounded-full glass text-primary-300"
+              <h4 className="text-lg font-semibold mb-4">Core Competencies</h4>
+              <div className="grid grid-cols-2 gap-3">
+                {coreCompetencies.map((competency) => (
+                  <div
+                    key={competency}
+                    className="flex items-center gap-2 text-sm"
                   >
-                    {skill}
-                  </span>
+                    <CheckCircle
+                      size={16}
+                      className="text-green-400 flex-shrink-0"
+                    />
+                    <span className="text-gray-300">{competency}</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <a
-              href="/cv/cv.pdf"
-              target="_blank"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-colors font-medium"
-            >
-              <Download size={18} />
-              Download CV
-            </a>
+            {/* What I bring */}
+            <div className="glass-card rounded-xl p-6">
+              <h4 className="text-lg font-semibold mb-4">What I Bring to Your Team</h4>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="text-center p-4">
+                  <div className="text-3xl mb-2">🚀</div>
+                  <h5 className="font-medium text-sm mb-1">Performance</h5>
+                  <p className="text-xs text-gray-500">
+                    Optimize for speed and scalability
+                  </p>
+                </div>
+                <div className="text-center p-4">
+                  <div className="text-3xl mb-2">💡</div>
+                  <h5 className="font-medium text-sm mb-1">Problem Solver</h5>
+                  <p className="text-xs text-gray-500">
+                    Turn complex problems into simple solutions
+                  </p>
+                </div>
+                <div className="text-center p-4">
+                  <div className="text-3xl mb-2">🤝</div>
+                  <h5 className="font-medium text-sm mb-1">Team Player</h5>
+                  <p className="text-xs text-gray-500">
+                    Collaborate effectively across teams
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

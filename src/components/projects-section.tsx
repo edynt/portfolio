@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
-import { projects } from "@/data/portfolio-data";
+import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { projects, personalInfo } from "@/data/portfolio-data";
 
 export default function ProjectsSection() {
   return (
@@ -20,7 +20,8 @@ export default function ProjectsSection() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Some of my recent work that showcases my skills and experience
+            Real-world projects that demonstrate my expertise in building
+            scalable, performant applications
           </p>
         </motion.div>
 
@@ -42,12 +43,31 @@ export default function ProjectsSection() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                {/* Category badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 text-xs rounded-full bg-black/50 backdrop-blur-sm text-white border border-white/20">
+                    {project.category}
+                  </span>
+                </div>
+
+                {/* Impact badge */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Sparkles size={14} className="text-yellow-400" />
+                    <span className="text-yellow-400 font-medium">
+                      {project.impact}
+                    </span>
+                  </div>
+                </div>
               </div>
 
               {/* Project info */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
+                  {project.title}
+                </h3>
                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
@@ -65,12 +85,12 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 pt-4 border-t border-white/10">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
                   >
                     <ExternalLink size={16} />
                     Live Demo
@@ -79,16 +99,35 @@ export default function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
                   >
                     <Github size={16} />
-                    Source
+                    Source Code
                   </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* More projects CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mt-12"
+        >
+          <a
+            href={`${personalInfo.social.github}?tab=repositories`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 transition-colors text-gray-300 hover:text-white"
+          >
+            <Github size={18} />
+            View More on GitHub
+          </a>
+        </motion.div>
       </div>
     </section>
   );
