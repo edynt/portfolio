@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, Send, Github, Linkedin, Phone } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
 
 export default function ContactSection() {
@@ -19,7 +19,8 @@ export default function ContactSection() {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind? Let&apos;s work together to bring your ideas to life
+            Have a project in mind? Let&apos;s work together to bring your ideas
+            to life
           </p>
         </motion.div>
 
@@ -35,8 +36,9 @@ export default function ContactSection() {
               Let&apos;s talk about your project
             </h3>
             <p className="text-gray-400 mb-8">
-              I&apos;m always interested in hearing about new projects and opportunities.
-              Whether you have a question or just want to say hi, feel free to reach out!
+              I&apos;m always interested in hearing about new projects and
+              opportunities. Whether you have a question or just want to say hi,
+              feel free to reach out!
             </p>
 
             <div className="space-y-6 mb-8">
@@ -51,6 +53,21 @@ export default function ContactSection() {
                     className="text-white hover:text-primary-400 transition-colors"
                   >
                     {personalInfo.email}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl glass">
+                  <Phone className="text-primary-400" size={24} />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-400">Phone</p>
+                  <a
+                    href={`tel:${personalInfo.phone}`}
+                    className="text-white hover:text-primary-400 transition-colors"
+                  >
+                    {personalInfo.phone}
                   </a>
                 </div>
               </div>
@@ -84,14 +101,6 @@ export default function ContactSection() {
               >
                 <Linkedin size={24} />
               </a>
-              <a
-                href={personalInfo.social.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl glass hover:bg-white/10 transition-colors"
-              >
-                <Twitter size={24} />
-              </a>
             </div>
           </motion.div>
 
@@ -122,7 +131,10 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -136,7 +148,10 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
 
 export default function HeroSection() {
@@ -17,7 +17,7 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary-300 mb-6">
-            Available for freelance work
+            Available for new opportunities
           </span>
         </motion.div>
 
@@ -90,14 +90,6 @@ export default function HeroSection() {
             className="text-gray-400 hover:text-white transition-colors"
           >
             <Linkedin size={24} />
-          </a>
-          <a
-            href={personalInfo.social.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <Twitter size={24} />
           </a>
         </motion.div>
       </div>

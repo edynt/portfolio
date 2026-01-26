@@ -3,7 +3,15 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/portfolio-data";
 
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
+function SkillBar({
+  name,
+  level,
+  delay,
+}: {
+  name: string;
+  level: number;
+  delay: number;
+}) {
   return (
     <div className="mb-4">
       <div className="flex justify-between mb-2">
@@ -27,7 +35,8 @@ export default function SkillsSection() {
   const skillCategories = [
     { title: "Frontend", icon: "🎨", skills: skills.frontend },
     { title: "Backend", icon: "⚙️", skills: skills.backend },
-    { title: "Tools & DevOps", icon: "🛠️", skills: skills.tools },
+    { title: "Database", icon: "🗄️", skills: skills.database },
+    { title: "DevOps & Tools", icon: "🛠️", skills: skills.devops },
   ];
 
   return (
@@ -48,7 +57,7 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -59,15 +68,15 @@ export default function SkillsSection() {
               className="glass-card rounded-2xl p-6"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{category.icon}</span>
-                <h3 className="text-xl font-semibold">{category.title}</h3>
+                <span className="text-2xl">{category.icon}</span>
+                <h3 className="text-lg font-semibold">{category.title}</h3>
               </div>
               {category.skills.map((skill, skillIndex) => (
                 <SkillBar
                   key={skill.name}
                   name={skill.name}
                   level={skill.level}
-                  delay={categoryIndex * 0.1 + skillIndex * 0.1}
+                  delay={categoryIndex * 0.1 + skillIndex * 0.05}
                 />
               ))}
             </motion.div>

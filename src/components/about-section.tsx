@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Mail, Calendar } from "lucide-react";
-import { personalInfo } from "@/data/portfolio-data";
+import { MapPin, Mail, Calendar, Phone, Download } from "lucide-react";
+import { personalInfo, education, softSkills } from "@/data/portfolio-data";
 
 export default function AboutSection() {
   return (
@@ -24,30 +24,53 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Profile image */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Profile image & Education */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative"
+            className="space-y-8"
           >
-            <div className="glass-card rounded-2xl p-4 relative z-10">
-              <div className="aspect-square rounded-xl overflow-hidden">
-                <Image
-                  src={personalInfo.avatar}
-                  alt={personalInfo.name}
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover"
-                  priority
-                />
+            {/* Avatar */}
+            <div className="relative">
+              <div className="glass-card rounded-2xl p-4 relative z-10">
+                <div className="aspect-square rounded-xl overflow-hidden">
+                  <Image
+                    src={personalInfo.avatar}
+                    alt={personalInfo.name}
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/30 rounded-full blur-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-cyan/20 rounded-full blur-2xl" />
+            </div>
+
+            {/* Education */}
+            <div className="glass-card rounded-2xl p-6">
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span className="text-2xl">🎓</span> Education
+              </h3>
+              <div className="space-y-4">
+                {education.map((edu, index) => (
+                  <div
+                    key={index}
+                    className="border-l-2 border-primary-500/30 pl-4"
+                  >
+                    <p className="font-medium text-sm">{edu.institution}</p>
+                    <p className="text-gray-400 text-sm">{edu.degree}</p>
+                    <p className="text-gray-500 text-xs">
+                      {edu.period} • GPA: {edu.gpa}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/30 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-cyan/20 rounded-full blur-2xl" />
           </motion.div>
 
           {/* Content */}
@@ -75,7 +98,23 @@ export default function AboutSection() {
                 <div className="p-2 rounded-lg glass">
                   <Mail size={18} className="text-primary-400" />
                 </div>
-                <span>{personalInfo.email}</span>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="hover:text-primary-400 transition-colors"
+                >
+                  {personalInfo.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300">
+                <div className="p-2 rounded-lg glass">
+                  <Phone size={18} className="text-primary-400" />
+                </div>
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="hover:text-primary-400 transition-colors"
+                >
+                  {personalInfo.phone}
+                </a>
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <div className="p-2 rounded-lg glass">
@@ -85,11 +124,29 @@ export default function AboutSection() {
               </div>
             </div>
 
+            {/* Soft Skills */}
+            <div className="mb-8">
+              <h4 className="text-sm font-medium text-gray-400 mb-3">
+                Soft Skills
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {softSkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-sm rounded-full glass text-primary-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
             <a
               href="/cv/cv.pdf"
               target="_blank"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-600 hover:bg-primary-500 transition-colors font-medium"
             >
+              <Download size={18} />
               Download CV
             </a>
           </motion.div>
