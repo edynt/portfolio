@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -10,10 +11,45 @@ import {
   Phone,
   Download,
   ArrowRight,
+  Loader2,
+  CheckCircle,
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+    }
+  };
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -170,11 +206,23 @@ export default function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="glass-card rounded-2xl p-8"
-            action={`mailto:${personalInfo.email}`}
-            method="POST"
-            encType="text/plain"
+            onSubmit={handleSubmit}
           >
             <h4 className="text-lg font-semibold mb-6">Send a Quick Message</h4>
+
+            {status === "success" && (
+              <div className="mb-6 p-4 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center gap-3">
+                <CheckCircle className="text-green-400" size={20} />
+                <p className="text-green-400">Message sent successfully!</p>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="mb-6 p-4 rounded-xl bg-red-500/20 border border-red-500/30">
+                <p className="text-red-400">{errorMessage}</p>
+              </div>
+            )}
+
             <div className="space-y-5">
               <div>
                 <label
@@ -188,7 +236,10 @@ export default function ContactSection() {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  disabled={status === "loading"}
+                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600 disabled:opacity-50"
                   placeholder="John Doe"
                 />
               </div>
@@ -205,7 +256,10 @@ export default function ContactSection() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  disabled={status === "loading"}
+                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600 disabled:opacity-50"
                   placeholder="john@company.com"
                 />
               </div>
@@ -222,7 +276,10 @@ export default function ContactSection() {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  disabled={status === "loading"}
+                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600 disabled:opacity-50"
                   placeholder="Job Opportunity / Project Inquiry"
                 />
               </div>
@@ -239,17 +296,30 @@ export default function ContactSection() {
                   name="message"
                   rows={4}
                   required
-                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600 resize-none"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  disabled={status === "loading"}
+                  className="w-full px-4 py-3 rounded-xl glass bg-transparent border border-white/10 focus:border-primary-500 focus:outline-none transition-colors placeholder-gray-600 resize-none disabled:opacity-50"
                   placeholder="Tell me about the opportunity..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-primary-600 hover:bg-primary-500 transition-colors font-medium flex items-center justify-center gap-2"
+                disabled={status === "loading"}
+                className="w-full py-3 rounded-xl bg-primary-600 hover:bg-primary-500 transition-colors font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send size={18} />
-                Send Message
+                {status === "loading" ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Send Message
+                  </>
+                )}
               </button>
             </div>
           </motion.form>
