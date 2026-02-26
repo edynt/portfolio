@@ -2,12 +2,12 @@ export const personalInfo = {
   name: "Tri Nguyen",
   title: "Senior Fullstack Developer",
   subtitle: "Turning complex business problems into elegant, scalable solutions",
-  tagline: "5+ Years | E-Commerce | Performance Optimization | Node.js & React",
-  bio: `I'm a results-driven Senior Fullstack Developer with 5+ years of experience building high-traffic web applications that directly impact business growth. My expertise lies in creating performant, scalable systems using Node.js, TypeScript, and React.
+  tagline: "6+ Years | E-Commerce | Performance Optimization | Node.js & React",
+  bio: `Senior Fullstack Developer with 6+ years shipping high-traffic web applications across e-commerce, legal tech, construction, and talent management domains. I architect performant, scalable systems with Node.js, TypeScript, and React — from zero-to-one product builds to enterprise-scale platform upgrades.
 
-At Merkle, I led development on Giant Bicycles' e-commerce platform serving millions of users, achieving 10% faster page loads and 99% payment success rates. I specialize in performance optimization, payment integrations, and microservices architecture.
+At Merkle (Dentsu), I drove development on Giant Bicycles' global e-commerce platform serving millions of users — achieving 10% faster page loads, 99% payment success rates, and 40% reduced database load. Currently at Hopee Solutions, I build products from scratch for clients in Japan and Australia.
 
-I'm passionate about clean code, developer experience, and shipping products that users love.`,
+I leverage AI-assisted development and prompt engineering to accelerate delivery while maintaining code quality. Passionate about clean architecture, developer experience, and shipping products that move the needle.`,
   avatar: "/images/avatar-placeholder.svg",
   email: "triminh.nguyen2098@gmail.com",
   phone: "(+84) 949 667 264",
@@ -21,7 +21,7 @@ I'm passionate about clean code, developer experience, and shipping products tha
 
 export const keyHighlights = [
   {
-    metric: "5+",
+    metric: "6+",
     label: "Years Experience",
     description: "Professional fullstack development",
   },
@@ -36,9 +36,9 @@ export const keyHighlights = [
     description: "Page load optimization",
   },
   {
-    metric: "4",
+    metric: "8+",
     label: "Major Projects",
-    description: "E-commerce, SaaS, Mobile",
+    description: "E-commerce, SaaS, Legal, Construction",
   },
 ];
 
@@ -49,11 +49,103 @@ export const coreCompetencies = [
   "Microservices Design",
   "API Development",
   "Database Optimization",
-  "Cloud Infrastructure",
-  "Technical Leadership",
+  "Cloud Infrastructure (AWS)",
+  "AI-Assisted Development",
+];
+
+export const certificates = [
+  {
+    name: "Claude Code in Action",
+    issuer: "Anthropic Academy",
+    verifyUrl: "https://verify.skilljar.com/c/xegp8xbg9nct",
+  },
 ];
 
 export const experiences = [
+  {
+    id: 0,
+    company: "Hopee Solutions",
+    companyDescription: "Outsourcing & product development company",
+    position: "Fullstack Developer",
+    period: "Mar 2025 - Present",
+    duration: "1 year",
+    projects: [
+      {
+        name: "Irohana Match",
+        type: "Talent Matching Platform",
+        duration: "Aug 2025 - Present",
+        impact: "Zero-to-one product build",
+        highlights: [
+          "Architected and built a full talent matching platform from scratch — connecting candidates to companies, jobs, and projects",
+          "Engineered real-time notifications and live data sync with WebSocket",
+          "Designed containerized deployment pipeline on AWS ECS/ECR with Cognito auth",
+          "Built intelligent matching algorithms to optimize candidate-job fit scoring",
+        ],
+        technologies: [
+          "NestJS",
+          "TypeORM",
+          "PostgreSQL",
+          "ReactJS",
+          "TanStack",
+          "Socket",
+          "AWS ECS/ECR",
+          "Cognito",
+        ],
+      },
+      {
+        name: "Stella",
+        type: "Construction Management System",
+        duration: "Jul 2025",
+        impact: "Japanese construction industry",
+        highlights: [
+          "Maintained and enhanced microservice-based platform managing construction, electrical, and plumbing projects",
+          "Developed scheduling engine with worker availability matching for optimal resource allocation",
+          "Improved calendar management system handling complex multi-worker project timelines",
+        ],
+        technologies: [
+          "Node.js",
+          "Microservices",
+          "DynamoDB",
+          "ReactJS",
+        ],
+      },
+      {
+        name: "Legal Docs",
+        type: "Legal Document Platform",
+        duration: "Apr 2025 - Jun 2025",
+        impact: "Australian legal industry",
+        highlights: [
+          "Built a legal document marketplace from the ground up for the Australian market",
+          "Delivered end-to-end full-stack solution — from database design to production deployment",
+          "Deployed production infrastructure on AWS EC2 with CI/CD automation",
+        ],
+        technologies: [
+          "NestJS",
+          "ReactJS",
+          "MongoDB",
+          "AWS EC2",
+        ],
+      },
+      {
+        name: "Irohana Visa",
+        type: "Visa Management System",
+        duration: "Mar 2025",
+        impact: "Japanese government integration",
+        highlights: [
+          "Stabilized and upgraded visa management web application for Japanese market",
+          "Implemented automated document submission pipeline integrated with Japanese government systems",
+        ],
+        technologies: [
+          "NestJS",
+          "TypeORM",
+          "PostgreSQL",
+          "ReactJS",
+          "TanStack",
+          "React Hooks",
+        ],
+      },
+    ],
+  },
   {
     id: 1,
     company: "Merkle (a Dentsu Company)",
@@ -68,13 +160,13 @@ export const experiences = [
         duration: "2 years",
         impact: "Millions of users globally",
         highlights: [
-          "Led frontend & backend development for a global e-commerce platform",
-          "Achieved 10% page load improvement through code splitting and lazy loading",
-          "Implemented Elastic Search, reducing product search time by 10%",
-          "Integrated PayPal & Stripe with 99% transaction success rate",
-          "Built Redis caching layer, reducing database load by 40%",
-          "Developed comprehensive logging with ELK Stack for debugging",
-          "Implemented GA4/GTM tracking for marketing analytics",
+          "Spearheaded frontend & backend development for a global e-commerce platform serving millions of users",
+          "Boosted page load speed by 10% through strategic code splitting, lazy loading, and CDN optimization",
+          "Integrated Elastic Search, cutting product search latency by 10% across thousands of SKUs",
+          "Implemented PayPal & Stripe payment gateways achieving 99% transaction success rate",
+          "Architected Redis caching layer that reduced database load by 40%",
+          "Built observability stack with ELK (Elasticsearch, Logstash, Kibana) for real-time debugging",
+          "Deployed GA4/GTM analytics tracking powering data-driven marketing decisions",
         ],
         technologies: [
           "Node.js",
@@ -96,10 +188,10 @@ export const experiences = [
         duration: "1 year",
         impact: "Germany's cinema chain",
         highlights: [
-          "Architected real-time notification system using Kafka",
-          "Improved UX leading to 15% faster page interactions",
-          "Built CMS for managing movies, events, and customer data",
-          "Authored technical documentation for international team",
+          "Designed event-driven notification system with Apache Kafka for real-time seat updates",
+          "Optimized frontend performance, delivering 15% faster page interactions",
+          "Built content management system for movies, events, and customer lifecycle",
+          "Authored technical documentation enabling seamless knowledge transfer across international teams",
         ],
         technologies: [
           "NestJS",
@@ -117,10 +209,10 @@ export const experiences = [
         duration: "1 year",
         impact: "Online learning startup",
         highlights: [
-          "Built video streaming infrastructure with Cloudinary",
-          "Developed course management dashboard from scratch",
-          "Integrated PayPal payments for course purchases",
-          "Created analytics dashboard for sales tracking",
+          "Engineered video streaming infrastructure with Cloudinary for smooth course delivery",
+          "Built course management dashboard from scratch with intuitive instructor tools",
+          "Integrated PayPal payment flow for seamless course purchases",
+          "Created real-time analytics dashboard for sales and engagement tracking",
         ],
         technologies: [
           "Node.js",
@@ -147,10 +239,10 @@ export const experiences = [
         duration: "9 months",
         impact: "Building management SaaS",
         highlights: [
-          "Developed cross-platform mobile app with React Native",
-          "Built GraphQL API for efficient data fetching",
-          "Created responsive web dashboard with React",
-          "Implemented real-time updates for building notifications",
+          "Developed cross-platform mobile app with React Native for iOS and Android",
+          "Designed GraphQL API layer for efficient, type-safe data fetching",
+          "Built responsive web dashboard with React for property managers",
+          "Implemented real-time push notifications for building events and alerts",
         ],
         technologies: [
           "Node.js",
@@ -178,9 +270,9 @@ export const experiences = [
         duration: "3 months",
         impact: "Digital payment solution",
         highlights: [
-          "Wrote comprehensive unit tests achieving 80% coverage",
-          "Developed expense management API endpoints",
-          "Learned best practices for secure payment handling",
+          "Achieved 80% test coverage with comprehensive unit and integration tests",
+          "Developed RESTful API endpoints for expense tracking and wallet management",
+          "Applied secure payment handling best practices in a fintech environment",
         ],
         technologies: ["Node.js", "JavaScript", "PostgreSQL", "Sequelize", "Jest"],
       },
@@ -266,15 +358,15 @@ export const projects = [
 
 export const skills = {
   frontend: [
-    { name: "React", level: 90 },
+    { name: "React / React Native", level: 90 },
     { name: "TypeScript", level: 88 },
-    { name: "React Native", level: 80 },
     { name: "Next.js", level: 75 },
+    { name: "TanStack Query", level: 82 },
     { name: "Tailwind CSS", level: 85 },
   ],
   backend: [
     { name: "Node.js", level: 92 },
-    { name: "NestJS", level: 85 },
+    { name: "NestJS", level: 88 },
     { name: "Express", level: 90 },
     { name: "GraphQL", level: 80 },
     { name: "REST API Design", level: 92 },
@@ -283,38 +375,46 @@ export const skills = {
     { name: "PostgreSQL", level: 88 },
     { name: "MongoDB", level: 85 },
     { name: "Redis", level: 82 },
-    { name: "Elastic Search", level: 75 },
-    { name: "Prisma/TypeORM", level: 85 },
+    { name: "DynamoDB", level: 72 },
+    { name: "Prisma / TypeORM", level: 85 },
   ],
   devops: [
+    { name: "AWS (ECS, ECR, EC2, S3)", level: 82 },
     { name: "Docker", level: 78 },
-    { name: "AWS (S3, CloudFront)", level: 80 },
     { name: "CI/CD", level: 75 },
     { name: "Git/GitHub", level: 92 },
     { name: "Kafka", level: 70 },
+  ],
+  ai: [
+    { name: "AI-Assisted Development", level: 85 },
+    { name: "Prompt Engineering", level: 82 },
+    { name: "Claude / ChatGPT", level: 85 },
+    { name: "AI Code Review", level: 78 },
+    { name: "AI Workflow Automation", level: 75 },
   ],
 };
 
 export const techStack = {
   languages: ["TypeScript", "JavaScript", "Python", "SQL"],
-  frontend: ["React", "React Native", "Next.js", "HTML5", "CSS3", "SASS", "Tailwind"],
-  backend: ["Node.js", "NestJS", "Express", "GraphQL", "REST API"],
-  databases: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Elastic Search"],
-  devops: ["Docker", "AWS", "CI/CD", "CircleCI", "Git"],
-  tools: ["Jest", "Prisma", "TypeORM", "Kafka", "ELK Stack"],
+  frontend: ["React", "React Native", "Next.js", "TanStack", "HTML5", "CSS3", "Tailwind"],
+  backend: ["Node.js", "NestJS", "Express", "GraphQL", "REST API", "Microservices"],
+  databases: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "DynamoDB", "Elastic Search"],
+  devops: ["Docker", "AWS (ECS/ECR/EC2/S3)", "CI/CD", "CircleCI", "Git"],
+  tools: ["Jest", "Prisma", "TypeORM", "Kafka", "ELK Stack", "Cognito", "Socket.io"],
+  ai: ["Claude", "ChatGPT", "Prompt Engineering", "AI-Assisted Development"],
 };
 
 export const softSkills = [
   "Technical Problem Solving",
   "Cross-functional Collaboration",
   "Agile/Scrum Methodology",
-  "English Communication",
-  "Code Review & Mentoring",
+  "English Communication (TOEIC 650+)",
+  "AI-Powered Productivity",
 ];
 
 export const languages = [
   { name: "Vietnamese", level: "Native" },
-  { name: "English", level: "Professional Working (B2)" },
+  { name: "English", level: "TOEIC 650+ (B2)" },
 ];
 
 export const navLinks = [

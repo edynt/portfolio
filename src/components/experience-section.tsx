@@ -19,7 +19,7 @@ export default function ExperienceSection() {
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-theme-secondary max-w-2xl mx-auto">
-            5+ years of building impactful products at leading companies
+            6+ years of building impactful products at leading companies
           </p>
         </motion.div>
 

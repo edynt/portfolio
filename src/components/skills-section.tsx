@@ -37,6 +37,7 @@ export default function SkillsSection() {
     { title: "Backend", icon: "⚙️", skills: skills.backend },
     { title: "Database", icon: "🗄️", skills: skills.database },
     { title: "DevOps", icon: "🚀", skills: skills.devops },
+    { title: "AI & Prompt", icon: "🤖", skills: skills.ai },
   ];
 
   return (
@@ -61,7 +62,7 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Skill bars grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -192,6 +193,23 @@ export default function SkillsSection() {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {techStack.tools.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1.5 text-sm rounded-lg glass hover:bg-white/10 transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* AI */}
+            <div>
+              <h4 className="text-sm font-medium text-primary-400 mb-3">
+                AI & Productivity
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {techStack.ai.map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1.5 text-sm rounded-lg glass hover:bg-white/10 transition-colors"
