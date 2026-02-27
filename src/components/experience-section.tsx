@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, Building2, ChevronRight, Zap } from "lucide-react";
+import { Briefcase, Calendar, Building2, ChevronRight, Zap, ExternalLink } from "lucide-react";
 import { experiences } from "@/data/portfolio-data";
 
 export default function ExperienceSection() {
@@ -85,7 +85,19 @@ export default function ExperienceSection() {
                           </div>
                           <div className="flex-1">
                             <div className="flex flex-wrap items-center gap-2">
-                              <h4 className="font-semibold">{project.name}</h4>
+                              {project.url ? (
+                                <a
+                                  href={project.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold hover:text-primary-400 transition-colors inline-flex items-center gap-1.5"
+                                >
+                                  {project.name}
+                                  <ExternalLink size={14} className="text-primary-400" />
+                                </a>
+                              ) : (
+                                <h4 className="font-semibold">{project.name}</h4>
+                              )}
                               <span className="text-xs px-2 py-0.5 rounded-full bg-accent-cyan/20 text-accent-cyan">
                                 {project.type}
                               </span>
@@ -118,7 +130,7 @@ export default function ExperienceSection() {
 
                         {/* Technologies */}
                         <div className="flex flex-wrap gap-2 ml-11">
-                          {project.technologies.slice(0, 5).map((tech) => (
+                          {project.technologies.map((tech) => (
                             <span
                               key={tech}
                               className="px-2 py-0.5 text-xs rounded glass text-theme-secondary"
@@ -126,11 +138,6 @@ export default function ExperienceSection() {
                               {tech}
                             </span>
                           ))}
-                          {project.technologies.length > 5 && (
-                            <span className="px-2 py-0.5 text-xs rounded glass text-theme-muted">
-                              +{project.technologies.length - 5}
-                            </span>
-                          )}
                         </div>
 
                         {/* Separator between projects */}

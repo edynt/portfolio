@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, MapPin, Download } from "lucide-react";
+import { ArrowDown, MapPin, Download } from "lucide-react";
 import { personalInfo, keyHighlights } from "@/data/portfolio-data";
 
 export default function HeroSection() {
@@ -124,32 +124,6 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex items-center justify-center gap-4"
-        >
-          <a
-            href={personalInfo.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-theme-secondary hover:text-theme-primary"
-            aria-label="GitHub Profile"
-          >
-            <Github size={22} />
-          </a>
-          <a
-            href={personalInfo.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-xl glass hover:bg-white/10 transition-colors text-theme-secondary hover:text-theme-primary"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin size={22} />
-          </a>
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}

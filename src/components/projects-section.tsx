@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { Github, Sparkles } from "lucide-react";
 import { projects, personalInfo } from "@/data/portfolio-data";
 
 export default function ProjectsSection() {
@@ -84,27 +84,6 @@ export default function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex items-center gap-4 pt-4 border-t border-white/10">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-theme-secondary hover:text-primary-400 transition-colors"
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-theme-secondary hover:text-primary-400 transition-colors"
-                  >
-                    <Github size={16} />
-                    Source Code
-                  </a>
-                </div>
               </div>
             </motion.div>
           ))}

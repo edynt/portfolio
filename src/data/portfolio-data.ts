@@ -8,14 +8,13 @@ export const personalInfo = {
 At Merkle (Dentsu), I drove development on Giant Bicycles' global e-commerce platform serving millions of users — achieving 10% faster page loads, 99% payment success rates, and 40% reduced database load. Currently at Hopee Solutions, I build products from scratch for clients in Japan and Australia.
 
 I leverage AI-assisted development and prompt engineering to accelerate delivery while maintaining code quality. Passionate about clean architecture, developer experience, and shipping products that move the needle.`,
-  avatar: "/images/avatar-placeholder.svg",
+  avatar: "/cv/img_avatar_cv.png",
   email: "triminh.nguyen2098@gmail.com",
   phone: "(+84) 949 667 264",
   location: "Ho Chi Minh City, Vietnam",
   availability: "Open to remote opportunities worldwide",
   social: {
     github: "https://github.com/edynt",
-    linkedin: "https://linkedin.com/in/tringuyen",
   },
 };
 
@@ -114,6 +113,7 @@ export const experiences = [
         type: "Legal Document Platform",
         duration: "Apr 2025 - Jun 2025",
         impact: "Australian legal industry",
+        url: "https://your-legaldocs.com/",
         highlights: [
           "Built a legal document marketplace from the ground up for the Australian market",
           "Delivered end-to-end full-stack solution — from database design to production deployment",
@@ -159,6 +159,7 @@ export const experiences = [
         type: "E-Commerce Platform",
         duration: "2 years",
         impact: "Millions of users globally",
+        url: "https://www.momentum-biking.com/gb",
         highlights: [
           "Spearheaded frontend & backend development for a global e-commerce platform serving millions of users",
           "Boosted page load speed by 10% through strategic code splitting, lazy loading, and CDN optimization",
@@ -187,6 +188,7 @@ export const experiences = [
         type: "Ticket Booking Platform",
         duration: "1 year",
         impact: "Germany's cinema chain",
+        url: "https://zoopalast.premiumkino.de/en/",
         highlights: [
           "Designed event-driven notification system with Apache Kafka for real-time seat updates",
           "Optimized frontend performance, delivering 15% faster page interactions",
@@ -208,6 +210,7 @@ export const experiences = [
         type: "EdTech Platform",
         duration: "1 year",
         impact: "Online learning startup",
+        url: "https://www.studysail.com/",
         highlights: [
           "Engineered video streaming infrastructure with Cloudinary for smooth course delivery",
           "Built course management dashboard from scratch with intuitive instructor tools",
@@ -221,6 +224,26 @@ export const experiences = [
           "Mongoose",
           "JavaScript",
           "Cloudinary",
+        ],
+      },
+      {
+        name: "SMCP",
+        type: "E-Commerce Platform",
+        duration: "6 months",
+        impact: "Global luxury fashion brand",
+        url: "https://www.smcp.com/en/",
+        highlights: [
+          "Developed e-commerce features for a global luxury fashion brand (Sandro, Maje, Claudie Pierlot)",
+          "Built and optimized product catalog, checkout flows, and promotional systems",
+          "Collaborated with international teams to deliver consistent brand experience across markets",
+        ],
+        technologies: [
+          "Node.js",
+          "TypeScript",
+          "React",
+          "PostgreSQL",
+          "Redis",
+          "AWS",
         ],
       },
     ],
@@ -312,7 +335,7 @@ export const projects = [
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
     tags: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "AWS"],
     category: "E-Commerce",
-    liveUrl: "#",
+    liveUrl: "https://www.momentum-biking.com/gb",
     githubUrl: "#",
   },
   {
@@ -325,7 +348,7 @@ export const projects = [
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=600&fit=crop",
     tags: ["NestJS", "TypeScript", "PostgreSQL", "Kafka"],
     category: "Entertainment",
-    liveUrl: "#",
+    liveUrl: "https://zoopalast.premiumkino.de/en/",
     githubUrl: "#",
   },
   {
@@ -338,20 +361,33 @@ export const projects = [
       "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
     tags: ["Node.js", "Express", "MongoDB", "Cloudinary"],
     category: "EdTech",
-    liveUrl: "#",
+    liveUrl: "https://www.studysail.com/",
     githubUrl: "#",
   },
   {
     id: 4,
-    title: "Ting Building Management",
+    title: "LegalDocs",
     description:
-      "PropTech SaaS with cross-platform mobile app and web dashboard. GraphQL API for efficient data synchronization across devices.",
-    impact: "Mobile + Web + API",
+      "Legal document marketplace for the Australian market. End-to-end full-stack solution from database design to production deployment on AWS.",
+    impact: "Australian legal industry",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
-    tags: ["React Native", "React", "GraphQL", "Node.js"],
-    category: "PropTech",
-    liveUrl: "#",
+      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
+    tags: ["NestJS", "ReactJS", "MongoDB", "AWS EC2"],
+    category: "LegalTech",
+    liveUrl: "https://your-legaldocs.com/",
+    githubUrl: "#",
+  },
+  {
+    id: 5,
+    title: "SMCP",
+    description:
+      "E-commerce platform for global luxury fashion brand (Sandro, Maje, Claudie Pierlot). Product catalog, checkout flows, and promotional systems across markets.",
+    impact: "Global luxury fashion brand",
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+    tags: ["Node.js", "TypeScript", "React", "PostgreSQL", "Redis", "AWS"],
+    category: "E-Commerce",
+    liveUrl: "https://www.smcp.com/en/",
     githubUrl: "#",
   },
 ];

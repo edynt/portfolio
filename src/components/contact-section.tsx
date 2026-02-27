@@ -7,7 +7,6 @@ import {
   MapPin,
   Send,
   Github,
-  Linkedin,
   Phone,
   Download,
   ArrowRight,
@@ -185,15 +184,6 @@ export default function ContactSection() {
                 >
                   <Github size={20} />
                   <span className="text-sm">GitHub</span>
-                </a>
-                <a
-                  href={personalInfo.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl glass hover:bg-white/10 transition-colors flex items-center gap-2"
-                >
-                  <Linkedin size={20} />
-                  <span className="text-sm">LinkedIn</span>
                 </a>
               </div>
             </div>
