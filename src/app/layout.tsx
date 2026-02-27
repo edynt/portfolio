@@ -9,11 +9,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tri Nguyen | Senior Fullstack Developer",
+  title: "Tri Nguyen | Middle Fullstack Developer",
   description:
-    "Senior Fullstack Developer with 5+ years of experience building high-performance web applications. Expert in Node.js, TypeScript, React, and cloud technologies. Available for remote opportunities worldwide.",
+    "Middle Fullstack Developer with 5+ years of experience building high-performance web applications. Expert in Node.js, TypeScript, React, and cloud technologies. Available for remote opportunities worldwide.",
   keywords: [
-    "senior fullstack developer",
+    "middle fullstack developer",
     "fullstack developer",
     "web developer",
     "react developer",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Tri Nguyen" }],
   creator: "Tri Nguyen",
   openGraph: {
-    title: "Tri Nguyen | Senior Fullstack Developer",
+    title: "Tri Nguyen | Middle Fullstack Developer",
     description:
       "5+ years building scalable web applications. Expert in Node.js, React, TypeScript. Open to remote opportunities.",
     type: "website",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tri Nguyen | Senior Fullstack Developer",
+    title: "Tri Nguyen | Middle Fullstack Developer",
     description:
       "5+ years building scalable web applications. Expert in Node.js, React, TypeScript.",
   },

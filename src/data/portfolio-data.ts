@@ -1,9 +1,9 @@
 export const personalInfo = {
   name: "Tri Nguyen",
-  title: "Senior Fullstack Developer",
+  title: "Middle Fullstack Developer",
   subtitle: "Turning complex business problems into elegant, scalable solutions",
   tagline: "6+ Years | E-Commerce | Performance Optimization | Node.js & React",
-  bio: `Senior Fullstack Developer with 6+ years shipping high-traffic web applications across e-commerce, legal tech, construction, and talent management domains. I architect performant, scalable systems with Node.js, TypeScript, and React — from zero-to-one product builds to enterprise-scale platform upgrades.
+  bio: `Middle Fullstack Developer with 6+ years shipping high-traffic web applications across e-commerce, legal tech, construction, and talent management domains. I architect performant, scalable systems with Node.js, TypeScript, and React — from zero-to-one product builds to enterprise-scale platform upgrades.
 
 At Merkle (Dentsu), I drove development on Giant Bicycles' global e-commerce platform serving millions of users — achieving 10% faster page loads, 99% payment success rates, and 40% reduced database load. Currently at Hopee Solutions, I build products from scratch for clients in Japan and Australia.
 
@@ -14,7 +14,7 @@ I leverage AI-assisted development and prompt engineering to accelerate delivery
   location: "Ho Chi Minh City, Vietnam",
   availability: "Open to remote opportunities worldwide",
   social: {
-    github: "https://github.com/tringuyen",
+    github: "https://github.com/edynt",
     linkedin: "https://linkedin.com/in/tringuyen",
   },
 };
@@ -93,7 +93,7 @@ export const experiences = [
         ],
       },
       {
-        name: "Stella",
+        name: "Stella Cloud",
         type: "Construction Management System",
         duration: "Jul 2025",
         impact: "Japanese construction industry",
