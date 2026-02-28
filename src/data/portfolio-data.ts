@@ -56,7 +56,26 @@ export const certificates = [
   {
     name: "Claude Code in Action",
     issuer: "Anthropic Academy",
+    image: null,
     verifyUrl: "https://verify.skilljar.com/c/xegp8xbg9nct",
+  },
+  {
+    name: "Frontend Development",
+    issuer: "HCMUS Information Center",
+    image: "/cv/cert_frontend.png",
+    verifyUrl: null,
+  },
+  {
+    name: "MEAN Stack Development",
+    issuer: "Khoa Pham Training Center",
+    image: "/cv/cert_mean.png",
+    verifyUrl: null,
+  },
+  {
+    name: "PHP Development",
+    issuer: "HCMUS Information Center",
+    image: "/cv/cert_php.png",
+    verifyUrl: null,
   },
 ];
 
@@ -306,7 +325,7 @@ export const experiences = [
 export const education = [
   {
     institution: "University of Science (HCMUS)",
-    degree: "Bachelor in Software Technology",
+    degree: "Collage in Software Technology",
     gpa: "65%",
     period: "2016 - 2019",
   },

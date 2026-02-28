@@ -23,11 +23,11 @@ export default function CertificatesSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {certificates.map((cert, index) => (
             <motion.a
               key={index}
-              href={cert.verifyUrl}
+              href={cert.verifyUrl || cert.image || "#"}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ export default function CertificatesSection() {
                   </h3>
                   <p className="text-theme-muted text-sm">{cert.issuer}</p>
                   <div className="flex items-center gap-1 mt-3 text-xs text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Verify</span>
+                    <span>{cert.verifyUrl ? "Verify" : "View"}</span>
                     <ExternalLink size={12} />
                   </div>
                 </div>
