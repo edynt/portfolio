@@ -1,45 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skills, techStack } from "@/data/portfolio-data";
-
-function SkillBar({
-  name,
-  level,
-  delay,
-}: {
-  name: string;
-  level: number;
-  delay: number;
-}) {
-  return (
-    <div className="mb-3">
-      <div className="flex justify-between mb-1.5">
-        <span className="text-sm font-medium text-theme-secondary">{name}</span>
-        <span className="text-xs text-theme-muted">{level}%</span>
-      </div>
-      <div className="h-1.5 rounded-full glass overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
-          className="h-full rounded-full bg-gradient-to-r from-primary-500 to-accent-cyan"
-        />
-      </div>
-    </div>
-  );
-}
+import { techStack } from "@/data/portfolio-data";
 
 export default function SkillsSection() {
-  const skillCategories = [
-    { title: "Frontend", icon: "🎨", skills: skills.frontend },
-    { title: "Backend", icon: "⚙️", skills: skills.backend },
-    { title: "Database", icon: "🗄️", skills: skills.database },
-    { title: "DevOps", icon: "🚀", skills: skills.devops },
-    { title: "AI & Prompt", icon: "🤖", skills: skills.ai },
-  ];
-
   return (
     <section id="skills" className="py-24 px-6 section-alt">
       <div className="max-w-6xl mx-auto">
@@ -56,37 +20,7 @@ export default function SkillsSection() {
           <p className="text-theme-secondary max-w-2xl mx-auto">
             Technologies I use to build scalable, performant applications
           </p>
-          <p className="text-theme-muted text-sm mt-2">
-            * Percentages indicate my confidence level with each technology
-          </p>
         </motion.div>
-
-        {/* Skill bars grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="glass-card rounded-2xl p-5"
-            >
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-xl">{category.icon}</span>
-                <h3 className="text-base font-semibold">{category.title}</h3>
-              </div>
-              {category.skills.map((skill, skillIndex) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={categoryIndex * 0.1 + skillIndex * 0.05}
-                />
-              ))}
-            </motion.div>
-          ))}
-        </div>
 
         {/* Tech Stack Cloud */}
         <motion.div

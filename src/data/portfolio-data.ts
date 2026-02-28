@@ -392,44 +392,6 @@ export const projects = [
   },
 ];
 
-export const skills = {
-  frontend: [
-    { name: "React / React Native", level: 90 },
-    { name: "TypeScript", level: 88 },
-    { name: "Next.js", level: 75 },
-    { name: "TanStack Query", level: 82 },
-    { name: "Tailwind CSS", level: 85 },
-  ],
-  backend: [
-    { name: "Node.js", level: 92 },
-    { name: "NestJS", level: 88 },
-    { name: "Express", level: 90 },
-    { name: "GraphQL", level: 80 },
-    { name: "REST API Design", level: 92 },
-  ],
-  database: [
-    { name: "PostgreSQL", level: 88 },
-    { name: "MongoDB", level: 85 },
-    { name: "Redis", level: 82 },
-    { name: "DynamoDB", level: 72 },
-    { name: "Prisma / TypeORM", level: 85 },
-  ],
-  devops: [
-    { name: "AWS (ECS, ECR, EC2, S3)", level: 82 },
-    { name: "Docker", level: 78 },
-    { name: "CI/CD", level: 75 },
-    { name: "Git/GitHub", level: 92 },
-    { name: "Kafka", level: 70 },
-  ],
-  ai: [
-    { name: "AI-Assisted Development", level: 85 },
-    { name: "Prompt Engineering", level: 82 },
-    { name: "Claude / ChatGPT", level: 85 },
-    { name: "AI Code Review", level: 78 },
-    { name: "AI Workflow Automation", level: 75 },
-  ],
-};
-
 export const techStack = {
   languages: ["TypeScript", "JavaScript", "Python", "SQL"],
   frontend: ["React", "React Native", "Next.js", "TanStack", "HTML5", "CSS3", "Tailwind"],
