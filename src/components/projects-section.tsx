@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Github, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Sparkles } from "lucide-react";
 import { projects, personalInfo } from "@/data/portfolio-data";
 
 export default function ProjectsSection() {
@@ -66,7 +66,19 @@ export default function ProjectsSection() {
               {/* Project info */}
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
-                  {project.title}
+                  {project.liveUrl && project.liveUrl !== "#" ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 hover:underline"
+                    >
+                      {project.title}
+                      <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  ) : (
+                    project.title
+                  )}
                 </h3>
                 <p className="text-theme-secondary text-sm mb-4 line-clamp-2">
                   {project.description}

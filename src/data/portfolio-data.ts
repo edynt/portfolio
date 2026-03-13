@@ -345,6 +345,19 @@ export const education = [
 
 export const projects = [
   {
+    id: 6,
+    title: "Termoras",
+    description:
+      "AI-powered Kanban board with integrated terminal. Automates workflows with AI, supports git operations like commit, push, review changes, and stash — all from one interface.",
+    impact: "AI + Kanban + Terminal in one tool",
+    image:
+      "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=600&fit=crop",
+    tags: ["Next.js", "React", "TypeScript", "AI", "Git"],
+    category: "Developer Tool",
+    liveUrl: "https://termoras.vercel.app/",
+    githubUrl: "#",
+  },
+  {
     id: 1,
     title: "Giant Bicycles E-Commerce",
     description:
