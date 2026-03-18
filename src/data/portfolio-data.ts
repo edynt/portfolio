@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Tri Nguyen",
   title: "Fullstack Developer",
   subtitle: "Turning complex business problems into elegant, scalable solutions",
-  tagline: "6+ Years | E-Commerce | Performance Optimization | Node.js & React",
+  tagline: "5+ Years | E-Commerce | Performance Optimization | Node.js & React",
   bio: `Fullstack Developer with 5+ years shipping high-traffic web applications across e-commerce, legal tech, construction, and talent management domains. I architect performant, scalable systems with Node.js, TypeScript, and React — from zero-to-one product builds to enterprise-scale platform upgrades.
 
 At Merkle (Dentsu), I drove development on Giant Bicycles' global e-commerce platform serving millions of users — achieving 10% faster page loads, 99% payment success rates, and 40% reduced database load. Currently at Hopee Solutions, I build products from scratch for clients in Japan and Australia.
@@ -20,7 +20,7 @@ I leverage AI-assisted development and prompt engineering to accelerate delivery
 
 export const keyHighlights = [
   {
-    metric: "6+",
+    metric: "5+",
     label: "Years Experience",
     description: "Professional fullstack development",
   },
