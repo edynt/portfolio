@@ -89,7 +89,7 @@ export default function HeroSection() {
             Let&apos;s Work Together
           </a>
           <a
-            href="/cv/cv.pdf"
+            href="/cv/NGUYEN-MINH-TRI-CV.pdf"
             target="_blank"
             className="px-8 py-3 rounded-full glass hover:bg-white/10 transition-colors font-medium flex items-center gap-2"
           >
