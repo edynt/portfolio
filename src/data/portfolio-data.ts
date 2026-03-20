@@ -2,12 +2,12 @@ export const personalInfo = {
   name: "Tri Nguyen",
   title: "Fullstack Developer",
   subtitle: "Turning complex business problems into elegant, scalable solutions",
-  tagline: "5+ Years | E-Commerce | Performance Optimization | Node.js & React",
-  bio: `Fullstack Developer with 5+ years shipping high-traffic web applications across e-commerce, legal tech, construction, and talent management domains. I architect performant, scalable systems with Node.js, TypeScript, and React — from zero-to-one product builds to enterprise-scale platform upgrades.
+  tagline: "5+ Years | Scalable Web Systems | Microservices | Node.js & React & AWS",
+  bio: `I build scalable web systems that handle real traffic — specializing in Node.js, TypeScript, React, and AWS. With 5+ years of fullstack experience, I design microservices architectures and engineer real-time, production-ready applications across e-commerce, legal tech, construction, and talent management.
 
-At Merkle (Dentsu), I drove development on Giant Bicycles' global e-commerce platform serving millions of users — achieving 10% faster page loads, 99% payment success rates, and 40% reduced database load. Currently at Hopee Solutions, I build products from scratch for clients in Japan and Australia.
+At Merkle (Dentsu), I drove key development on Giant Bicycles' global platform serving millions of users — delivering 10% faster page loads, 99% payment success rates, and 40% reduced database load through Redis caching and Elastic Search optimization. Now at Hopee Solutions, I build products from scratch for clients in Japan and Australia, from database design to containerized AWS deployments.
 
-I leverage AI-assisted development and prompt engineering to accelerate delivery while maintaining code quality. Passionate about clean architecture, developer experience, and shipping products that move the needle.`,
+I embrace AI-assisted development to ship faster without sacrificing quality. Clean architecture, strong developer experience, and products that genuinely move the needle — that's what I'm about.`,
   avatar: "/cv/img_avatar_cv.png",
   email: "triminh.nguyen2098@gmail.com",
   phone: "(+84) 949 667 264",
