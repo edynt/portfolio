@@ -94,19 +94,22 @@ export const experiences = [
         duration: "Aug 2025 - Present",
         impact: "Zero-to-one product build",
         highlights: [
-          "Architected and built a full talent matching platform from scratch — connecting candidates to companies, jobs, and projects",
-          "Engineered real-time notifications and live data sync with WebSocket",
-          "Designed containerized deployment pipeline on AWS ECS/ECR with Cognito auth",
-          "Built intelligent matching algorithms to optimize candidate-job fit scoring",
+          "Built and integrated features from scratch utilizing Claude Code throughout the development process",
+          "Designed database schema based on Figma specifications",
+          "Developed real-time updates using WebSocket for live system interactions",
+          "Designed and deployed containerized infrastructure on AWS ECS/ECR with Cognito authentication",
+          "Collaborated in code reviews and ensured code quality across the team",
         ],
         technologies: [
           "NestJS",
           "TypeORM",
           "PostgreSQL",
           "ReactJS",
-          "TanStack",
-          "Socket",
+          "TanStack Query",
+          "WebSocket",
           "AWS ECS/ECR",
+          "S3",
+          "Route 53",
           "Cognito",
         ],
       },
@@ -125,6 +128,7 @@ export const experiences = [
           "Microservices",
           "DynamoDB",
           "ReactJS",
+          "Nginx",
         ],
       },
       {
@@ -134,15 +138,19 @@ export const experiences = [
         impact: "Australian legal industry",
         url: "https://your-legaldocs.com/",
         highlights: [
-          "Built a legal document marketplace from the ground up for the Australian market",
-          "Delivered end-to-end full-stack solution — from database design to production deployment",
-          "Deployed production infrastructure on AWS EC2 with CI/CD automation",
+          "Built a legal document marketplace for the Australian market from initial architecture to production deployment",
+          "Developed full-stack features including document management, marketplace workflows, and user access control",
+          "Implemented CI/CD pipeline and deployed production infrastructure on AWS",
+          "Collaborated in code reviews and ensured code quality across the team",
         ],
         technologies: [
-          "NestJS",
-          "ReactJS",
+          "Node.js",
+          "Microservices",
           "MongoDB",
+          "ReactJS",
           "AWS EC2",
+          "Stripe",
+          "Hostinger",
         ],
       },
       {
@@ -169,7 +177,7 @@ export const experiences = [
     id: 1,
     company: "Merkle (a Dentsu Company)",
     companyDescription: "Global digital transformation agency",
-    position: "Mid-Senior Fullstack Developer",
+    position: "Mid Fullstack Developer",
     period: "Dec 2020 - Jan 2025",
     duration: "4 years",
     projects: [
@@ -271,14 +279,14 @@ export const experiences = [
     id: 2,
     company: "HiCAS",
     companyDescription: "PropTech startup",
-    position: "Junior Fullstack Developer",
+    position: "Fresher Fullstack Developer",
     period: "Dec 2019 - Aug 2020",
     duration: "9 months",
     projects: [
       {
         name: "Ting Building Management",
         type: "PropTech Solution",
-        duration: "9 months",
+        duration: "8 months",
         impact: "Building management SaaS",
         highlights: [
           "Developed cross-platform mobile app with React Native for iOS and Android",
@@ -425,12 +433,12 @@ export const projects = [
 ];
 
 export const techStack = {
-  languages: ["TypeScript", "JavaScript", "Python", "SQL"],
-  frontend: ["React", "React Native", "Next.js", "TanStack", "HTML5", "CSS3", "Tailwind"],
-  backend: ["Node.js", "NestJS", "Express", "GraphQL", "REST API", "Microservices"],
-  databases: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "DynamoDB", "Elastic Search"],
-  devops: ["Docker", "AWS (ECS/ECR/EC2/S3)", "CI/CD", "CircleCI", "Git"],
-  tools: ["Jest", "Prisma", "TypeORM", "Kafka", "ELK Stack", "Cognito", "Socket.io"],
+  languages: ["TypeScript", "JavaScript", "Python", "Go", "SQL"],
+  frontend: ["React", "React Native", "Next.js", "TanStack", "Redux", "HTML5", "CSS3", "SASS", "Tailwind", "Shadcn", "Bootstrap", "jQuery"],
+  backend: ["Node.js", "NestJS", "Express", "GraphQL", "REST API", "Microservices", "Gorm"],
+  databases: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "DynamoDB", "Elastic Search", "Sequelize", "Mongoose"],
+  devops: ["Docker", "AWS (ECS/ECR/EC2/S3)", "Lambda", "CloudFront", "CI/CD", "CircleCI", "Cloudflare", "Nginx", "Git"],
+  tools: ["Jest", "Prisma", "TypeORM", "Kafka", "ELK Stack", "Cognito", "Socket.io", "Jira", "Scrum/Agile"],
   ai: ["Claude", "ChatGPT", "Prompt Engineering", "AI-Assisted Development"],
 };
 
