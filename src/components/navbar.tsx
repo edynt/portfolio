@@ -42,6 +42,7 @@ export default function Navbar() {
               <li key={link.name}>
                 <a
                   href={link.href}
+                  {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="text-theme-secondary hover:text-theme-primary transition-colors relative group"
                 >
                   {link.name}
@@ -79,6 +80,7 @@ export default function Navbar() {
                 <li key={link.name}>
                   <a
                     href={link.href}
+                    {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="block px-6 py-3 text-theme-secondary hover:text-theme-primary hover:bg-white/5 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
