@@ -3,6 +3,7 @@ import type { Tutorial } from '@/types/tutorial';
 export type TutorialId =
   | 'lambda'
   | 'aws-setup'
+  | 'aws-rds'
   | 'docker'
   | 'github-actions'
   | 'linux-server-setup'
@@ -13,6 +14,7 @@ export type TutorialId =
 export const tutorialIds: TutorialId[] = [
   'lambda',
   'aws-setup',
+  'aws-rds',
   'docker',
   'github-actions',
   'linux-server-setup',
