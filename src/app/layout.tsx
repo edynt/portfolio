@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/contexts/theme-context";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   variable: "--font-inter",
 });
 
@@ -50,17 +49,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider>
-          {/* Ambient background glows */}
-          <div className="ambient-glow w-96 h-96 bg-primary-500 top-0 left-1/4" />
-          <div className="ambient-glow w-80 h-80 bg-accent-cyan top-1/3 right-1/4" />
-          <div className="ambient-glow w-72 h-72 bg-accent-pink bottom-1/4 left-1/3" />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+  return children;
 }

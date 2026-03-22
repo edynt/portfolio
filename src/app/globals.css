@@ -147,6 +147,18 @@ body {
   background: var(--bg-secondary);
 }
 
+/* Shiki dual theme: dark colors via inline style, light override via CSS variable */
+.shiki,
+.shiki code {
+  background-color: transparent !important;
+}
+[data-theme="light"] .shiki span {
+  color: var(--shiki-light) !important;
+}
+[data-theme="light"] .shiki {
+  background-color: transparent !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
