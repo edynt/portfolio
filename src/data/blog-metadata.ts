@@ -132,4 +132,17 @@ export const tutorialsMeta: TutorialMeta[] = [
     steps: 12,
     tags: ['Kubernetes', 'kubectl', 'Minikube', 'Pods', 'Deployments'],
   },
+  {
+    id: 'devops-edge-cases',
+    icon: '🎯',
+    iconBg: 'from-rose-500 to-pink-600',
+    category: 'Interview',
+    categoryColor: 'bg-rose-500/10 text-rose-400 border border-rose-500/20',
+    titleVi: 'DevOps Edge Cases Q&A',
+    titleEn: 'DevOps Edge Cases Q&A',
+    descVi: 'Câu hỏi phỏng vấn DevOps thực tế: zero downtime Nginx, rollback, database migration, memory leak, SSL, Docker debug.',
+    descEn: 'Real-world DevOps interview questions: zero downtime Nginx, rollback, database migration, memory leak, SSL, Docker debug.',
+    steps: 12,
+    tags: ['Interview', 'Nginx', 'Docker', 'Database', 'Security', 'DevOps'],
+  },
 ];
