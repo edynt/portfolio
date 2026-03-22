@@ -2,8 +2,8 @@ import type { Tutorial } from '@/types/tutorial';
 
 const tutorial: Tutorial = {
   id: 'linux-server-setup',
-  title: 'Linux Server Setup',
-  description: 'Provision an Ubuntu server: SSH, firewall, Nginx, SSL, and hardening',
+  title: 'EC2 Server Setup',
+  description: 'Set up an EC2 Ubuntu server: SSH, firewall, Nginx, SSL, and hardening',
   icon: '🖥',
   chapters: [
     {
@@ -60,6 +60,12 @@ sudo whoami
 # PubkeyAuthentication yes
 
 sudo systemctl restart sshd`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Test SSH in a <strong>NEW terminal</strong> before closing your current session. Run <code>ssh deploy@YOUR_SERVER_IP</code> in a second window — confirm you can log in before closing the first session. If locked out, use your VPS console.',
             },
           ],
         },
@@ -125,6 +131,12 @@ sudo ufw status verbose`,
               variant: 'danger',
               title: 'Allow SSH before enabling!',
               html: 'If you enable UFW without allowing port 22 (SSH) first, you will be locked out of your server permanently. Run <code>sudo ufw allow OpenSSH</code> first.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run <code>sudo ufw status verbose</code> to confirm all expected rules are active. You should see ports 22, 80, and 443 listed as ALLOW.',
             },
             {
               type: 'table',
@@ -210,6 +222,12 @@ sudo nginx -t
 # Reload Nginx
 sudo systemctl reload nginx`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run <code>sudo nginx -t</code> before reloading. You should see <code>syntax is ok</code> and <code>test is successful</code>. Only reload if both lines are green.',
+            },
           ],
         },
         {
@@ -233,6 +251,12 @@ sudo certbot renew --dry-run
 
 # Check renewal timer
 sudo systemctl status certbot.timer`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Visit <code>https://your-domain.com</code> in a browser and check the certificate. Click the padlock icon — the cert should be issued by Let\'s Encrypt and valid for your domain.',
             },
             {
               type: 'callout',
@@ -307,6 +331,85 @@ sudo journalctl -u my-app -f`,
                 ['journalctl -u my-app -f', 'Stream logs in real-time'],
                 ['journalctl -u my-app --since "1 hour ago"', 'Logs from last hour'],
               ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'chapter4',
+      title: 'Troubleshooting',
+      sections: [
+        {
+          id: 'troubleshooting',
+          title: 'Common Problems & Fixes',
+          subtitle: 'Solutions to the most frequent server setup issues',
+          icon: '🔧',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Locked out of SSH</strong> — Cannot connect after changing SSH config.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'You changed the SSH port or modified <code>sshd_config</code> without testing in a new terminal first. The new config may have a syntax error or block your key.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Use your VPS provider\'s web console (e.g., DigitalOcean Console, AWS SSM). Log in through the console, run <code>sudo nano /etc/ssh/sshd_config</code> to fix the config, then <code>sudo systemctl restart sshd</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Nginx shows 502 Bad Gateway</strong> — Nginx is running but returns 502 for all requests.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Your backend application is not running, or the <code>proxy_pass</code> port in your Nginx config does not match the port your app is listening on.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Run <code>sudo systemctl status my-app</code> to check if the backend is active. Verify the port in your Nginx config matches: <code>grep proxy_pass /etc/nginx/sites-enabled/my-app</code>. Restart the app if needed: <code>sudo systemctl start my-app</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>SSL certificate renewal fails</strong> — Certbot renew returns errors.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Port 80 is blocked by UFW, or Nginx is not correctly configured to serve the <code>.well-known/acme-challenge</code> path that Let\'s Encrypt uses for domain verification.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Ensure UFW allows port 80: <code>sudo ufw allow 80/tcp</code>. Verify the certbot Nginx plugin is installed: <code>sudo apt install python3-certbot-nginx</code>. Then retry: <code>sudo certbot renew --dry-run</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>UFW blocking legitimate traffic</strong> — A service is unreachable despite being configured.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The UFW rule for the required port was never added, or it was added with the wrong port number.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Check current rules: <code>sudo ufw status</code>. If the port is missing, add it: <code>sudo ufw allow PORT/tcp</code>. Example: <code>sudo ufw allow 8080/tcp</code>.',
             },
           ],
         },

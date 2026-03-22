@@ -132,6 +132,12 @@ sudo apt autoremove -y
 sudo find /var/log -name "*.log" -size +50M
 sudo truncate -s 0 /var/log/large-file.log  # Xóa nội dung mà không xóa file`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy lại <code>df -h</code> để xác nhận dung lượng đã được giải phóng. Phần trăm sử dụng filesystem phải giảm đáng kể. Restart app nếu nó bị kill do ổ cứng đầy.',
+            },
           ],
         },
         {
@@ -172,6 +178,12 @@ ExecStart=/usr/bin/node --max-old-space-size=2048 dist/index.js
 # Đặt giới hạn RAM (systemd sẽ restart nếu vượt quá)
 MemoryMax=3G
 MemorySwapMax=0`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy <code>free -h</code> để xác nhận RAM đã được phục hồi về mức bình thường. Cột "available" phải hiển thị nhiều RAM trống hơn đáng kể sau khi restart process bị memory leak.',
             },
           ],
         },
@@ -233,6 +245,12 @@ kill -15 1234
 
 # Hoặc tìm service và restart sạch
 sudo systemctl restart my-app`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy <code>ss -tlnp</code> để xác nhận port đã được giải phóng (hoặc đang được giữ bởi đúng process). App phải khởi động thành công và port phải được bind đúng service.',
             },
           ],
         },

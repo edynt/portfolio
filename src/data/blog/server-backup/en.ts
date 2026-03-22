@@ -138,6 +138,18 @@ crontab -e
 # Add:
 # 0 */6 * * * /home/deploy/backup-postgres.sh >> /var/log/backup.log 2>&1`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run the script manually first: <code>bash /home/deploy/backup-postgres.sh</code> and check the output. You should see "Backup complete" with the filename. No errors means the script, DB connection, and S3 credentials are all working.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Check the cron job is registered: <code>crontab -l</code>. You should see the backup line listed. Also confirm S3 received the file: <code>aws s3 ls s3://my-backups-bucket/postgres/ | tail -5</code>.',
+            },
           ],
         },
         {
@@ -178,6 +190,12 @@ aws s3 cp "$CONFIGS_ARCHIVE" \\
 
 rm -f "$CONFIGS_ARCHIVE"
 echo "Config backup complete"`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Check S3 received the files: <code>aws s3 ls s3://my-backups-bucket/postgres/backups/</code>. Confirm the timestamp on the latest file matches when you ran the backup.',
             },
           ],
         },
@@ -221,6 +239,12 @@ sudo -u postgres psql myapp_restored -c "SELECT COUNT(*) FROM users;"
 # 7. Update app connection string to point to restored db
 # Then restart the service
 sudo systemctl restart my-app`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Connect to the database and verify data looks correct: <code>psql -c \'SELECT count(*) FROM users;\'</code>. The row count should match your expected production data volume. Also spot-check a few records to confirm content integrity.',
             },
             {
               type: 'callout',

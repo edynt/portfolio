@@ -132,6 +132,12 @@ sudo apt autoremove -y
 sudo find /var/log -name "*.log" -size +50M
 sudo truncate -s 0 /var/log/large-file.log  # Zero out without deleting`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run <code>df -h</code> again to confirm space was freed. The filesystem usage percentage should be noticeably lower. Restart your app if it was killed by the full disk.',
+            },
           ],
         },
         {
@@ -172,6 +178,12 @@ ExecStart=/usr/bin/node --max-old-space-size=2048 dist/index.js
 # Set memory limit (systemd will restart if exceeded)
 MemoryMax=3G
 MemorySwapMax=0`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run <code>free -h</code> to confirm memory has been restored to normal levels. The "available" column should show significantly more free memory after restarting the leaking process.',
             },
           ],
         },
@@ -233,6 +245,12 @@ kill -15 1234
 
 # Or find the service and restart it cleanly
 sudo systemctl restart my-app`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Run <code>ss -tlnp</code> to confirm the port is now free (or held by the correct process). Your app should start successfully and the port should appear bound to the intended service.',
             },
           ],
         },

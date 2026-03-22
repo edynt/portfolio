@@ -48,7 +48,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'info',
               title: 'Lưu ý quan trọng',
-              html: '<ul><li><strong>Region:</strong> <code>us-east-1</code> (N. Virginia) — hoặc region bạn chọn, nhưng phải <strong>đồng nhất</strong> cho tất cả services</li><li><strong>Thời gian:</strong> ~30-45 phút</li><li>Không dùng CodeBuild — GitHub Actions build trực tiếp, đơn giản hơn, miễn phí 2000 phút/tháng</li></ul>',
+              html: '<ul><li><strong>Region:</strong> <code>ap-southeast-1</code> (Singapore) — hoặc region bạn chọn, nhưng phải <strong>đồng nhất</strong> cho tất cả services</li><li><strong>Thời gian:</strong> ~30-45 phút</li><li>Không dùng CodeBuild — GitHub Actions build trực tiếp, đơn giản hơn, miễn phí 2000 phút/tháng</li></ul>',
             },
           ],
         },
@@ -333,7 +333,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'info',
               title: 'Ví dụ điền thực tế',
-              html: 'Với account <code>093468662880</code> và region <code>us-east-1</code>:<br/><code>executionRoleArn: arn:aws:iam::093468662880:role/ecsTaskExecutionRole</code><br/><code>image: 093468662880.dkr.ecr.us-east-1.amazonaws.com/ecr-backend:latest</code>',
+              html: 'Với account <code>093468662880</code> và region <code>ap-southeast-1</code>:<br/><code>executionRoleArn: arn:aws:iam::093468662880:role/ecsTaskExecutionRole</code><br/><code>image: 093468662880.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-backend:latest</code>',
             },
             {
               type: 'table',
@@ -519,7 +519,7 @@ const tutorial: Tutorial = {
               rows: [
                 ['<code>AWS_ACCESS_KEY_ID</code>', 'Access Key từ Bước 1'],
                 ['<code>AWS_SECRET_ACCESS_KEY</code>', 'Secret Key từ Bước 1'],
-                ['<code>AWS_REGION</code>', '<code>us-east-1</code> (hoặc region bạn chọn)'],
+                ['<code>AWS_REGION</code>', '<code>ap-southeast-1</code> (hoặc region bạn chọn)'],
                 ['<code>ECS_SERVICE</code>', 'Tên service từ Bước 5 (ví dụ: <code>ecr-backend-service</code>)'],
               ],
             },
@@ -541,7 +541,7 @@ const tutorial: Tutorial = {
               rows: [
                 ['<code>AWS_ACCESS_KEY_ID</code>', 'Access Key từ Bước 1'],
                 ['<code>AWS_SECRET_ACCESS_KEY</code>', 'Secret Key từ Bước 1'],
-                ['<code>AWS_REGION</code>', '<code>us-east-1</code>'],
+                ['<code>AWS_REGION</code>', '<code>ap-southeast-1</code>'],
                 ['<code>AWS_S3_BUCKET_NAME</code>', '<code>ecr-frontend-{ten-cua-ban}</code>'],
                 ['<code>VITE_API_URL</code>', '<code>http://{EC2-PUBLIC-IP}:3000</code>'],
               ],
@@ -680,7 +680,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'danger',
               title: 'Nguyên nhân',
-              html: 'ECR ở <code>us-east-1</code> nhưng ECS ở <code>ap-southeast-1</code> (hoặc ngược lại)',
+              html: 'ECR ở <code>ap-southeast-1</code> nhưng ECS ở <code>ap-southeast-1</code> (hoặc ngược lại)',
             },
             {
               type: 'callout',

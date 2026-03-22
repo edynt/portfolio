@@ -236,6 +236,12 @@ kubectl delete pod my-app`,
             },
             {
               type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau <code>kubectl apply -f pod.yaml</code>, xác nhận Pod đang chạy:<br><br><code>kubectl get pods</code><br><br>Kết quả mong đợi:<pre>NAME     READY   STATUS    RESTARTS   AGE\nmy-app   1/1     Running   0          15s</pre>Nếu status là <code>ContainerCreating</code>, đợi vài giây rồi chạy lại. Để xem chi tiết hơn: <code>kubectl describe pod my-app</code>.',
+            },
+            {
+              type: 'callout',
               variant: 'warn',
               title: 'Không deploy Pod trực tiếp',
               html: 'Trong thực tế, <strong>không bao giờ</strong> tạo Pod trực tiếp. Hãy dùng <strong>Deployment</strong> — nó tự quản lý Pods, restart khi crash, và hỗ trợ rolling updates.',
@@ -307,6 +313,12 @@ kubectl rollout undo deployment/my-app`,
             },
             {
               type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau <code>kubectl apply -f deployment.yaml</code>, xác nhận tất cả replicas đang chạy:<br><br><code>kubectl get deployments</code><br><code>kubectl get pods</code><br><br>Kết quả mong đợi:<pre>NAME     READY   UP-TO-DATE   AVAILABLE\nmy-app   3/3     3            3</pre>Tất cả pods phải hiển thị <code>1/1 Running</code>. Dùng <code>kubectl describe pod &lt;pod-name&gt;</code> nếu có pod báo lỗi.',
+            },
+            {
+              type: 'callout',
               variant: 'tip',
               title: 'Resource Requests & Limits',
               html: 'Luôn đặt <code>resources.requests</code> (tối thiểu) và <code>resources.limits</code> (tối đa) cho CPU và memory. Scheduler dùng requests để chọn Node, limits để ngăn container chiếm quá nhiều tài nguyên.',
@@ -364,6 +376,12 @@ kubectl get services
 minikube service my-app-service --url
 # http://192.168.49.2:30080`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau <code>kubectl apply -f service.yaml</code>, xác nhận Service được tạo và có endpoints đúng:<br><br><code>kubectl get services</code><br><code>kubectl get endpoints my-app-service</code><br><br>Danh sách endpoints phải chứa Pod IPs — nếu rỗng, label selector của Service không khớp với label của Pods. Dùng <code>kubectl describe service my-app-service</code> để kiểm tra.',
+            },
           ],
         },
         {
@@ -394,6 +412,12 @@ kubectl get all -n staging
 
 # Đặt namespace mặc định cho context
 kubectl config set-context --current --namespace=staging`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau <code>kubectl create namespace staging</code>, xác nhận namespace tồn tại:<br><br><code>kubectl get namespaces</code><br><br>Kết quả mong đợi: <code>staging</code> xuất hiện với trạng thái <code>Active</code>. Sau đó kiểm tra deployment đã vào đúng namespace: <code>kubectl get all -n staging</code>.',
             },
             {
               type: 'callout',
@@ -500,6 +524,12 @@ kubectl get services
 
 # Mở trình duyệt
 minikube service node-app-service`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau <code>kubectl apply -f k8s-app.yaml</code>, cả hai pods phải đạt trạng thái <code>Running</code> trong vòng ~30 giây. Kiểm tra bằng:<br><br><code>kubectl get pods -w</code><br><br>Sau đó lấy URL của app và kiểm tra:<br><code>minikube service node-app-service --url</code><br><br>Mở URL được in ra trong trình duyệt — ứng dụng Node.js của bạn phải phản hồi.',
             },
           ],
         },
@@ -750,6 +780,79 @@ kubectl describe node <node-name>`,
               variant: 'tip',
               title: 'Cleanup khi học xong',
               html: 'Xóa toàn bộ resources: <code>kubectl delete all --all</code>. Dừng Minikube: <code>minikube stop</code>. Xóa cluster hoàn toàn: <code>minikube delete</code>.',
+            },
+          ],
+        },
+        {
+          id: 'troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Các lỗi Kubernetes thường gặp và cách xử lý',
+          icon: '🩺',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Pod kẹt ở ImagePullBackOff</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Tên image hoặc tag sai, hoặc image nằm ở private registry nhưng cluster không có credentials để pull.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Kiểm tra lại tên image và tag trong Deployment spec. Với private registry, tạo <code>imagePullSecrets</code>: <code>kubectl create secret docker-registry regcred --docker-server=... --docker-username=... --docker-password=...</code> rồi tham chiếu trong Pod spec.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Pod kẹt ở CrashLoopBackOff</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Ứng dụng trong container bị crash khi khởi động — do bug, thiếu env variable, health check thất bại hoặc cấu hình command sai.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Xem logs từ lần crash cuối: <code>kubectl logs &lt;pod&gt; --previous</code>. Xem chi tiết Pod và events: <code>kubectl describe pod &lt;pod&gt;</code>. Sửa nguyên nhân gốc rễ trong app hoặc Deployment config rồi apply lại.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Service không truy cập được</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Label selector của Service không khớp với label của Pods, hoặc <code>targetPort</code> không khớp với port container đang lắng nghe — Service không có endpoints.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Kiểm tra labels khớp giữa Service selector và Pod template: <code>kubectl get pods --show-labels</code>. Xem endpoints: <code>kubectl get endpoints &lt;service-name&gt;</code> — không được rỗng. Đảm bảo <code>targetPort</code> khớp với <code>containerPort</code> trong Deployment.',
+            },
+            {
+              type: 'text',
+              html: '<strong>PersistentVolumeClaim kẹt ở Pending</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Không có PersistentVolume nào khớp với yêu cầu PVC — chưa có PV nào được provision, <code>storageClassName</code> sai, hoặc dung lượng yêu cầu vượt quá PV có sẵn.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Xem PVs có sẵn: <code>kubectl get pv</code>. Đảm bảo PVC spec khớp với PV về <code>storageClassName</code>, access modes và dung lượng. Trên Minikube, dùng <code>storageClassName: standard</code> (provisioner mặc định) hoặc bỏ trống trường <code>storageClassName</code>.',
             },
           ],
         },

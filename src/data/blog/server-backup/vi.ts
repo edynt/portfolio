@@ -138,6 +138,18 @@ crontab -e
 # Thêm:
 # 0 */6 * * * /home/deploy/backup-postgres.sh >> /var/log/backup.log 2>&1`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy script thủ công trước: <code>bash /home/deploy/backup-postgres.sh</code> và kiểm tra output. Bạn phải thấy "Backup hoàn tất" cùng tên file. Không có lỗi nghĩa là script, kết nối DB và credentials S3 đều hoạt động.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Xác nhận cron job đã được đăng ký: <code>crontab -l</code>. Bạn sẽ thấy dòng backup được liệt kê. Kiểm tra S3 đã nhận file: <code>aws s3 ls s3://my-backups-bucket/postgres/ | tail -5</code>.',
+            },
           ],
         },
         {
@@ -178,6 +190,12 @@ aws s3 cp "$CONFIGS_ARCHIVE" \\
 
 rm -f "$CONFIGS_ARCHIVE"
 echo "Backup config hoàn tất"`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Kiểm tra S3 đã nhận file: <code>aws s3 ls s3://my-backups-bucket/postgres/backups/</code>. Xác nhận timestamp trên file mới nhất khớp với thời điểm bạn chạy backup.',
             },
           ],
         },
@@ -221,6 +239,12 @@ sudo -u postgres psql myapp_restored -c "SELECT COUNT(*) FROM users;"
 # 7. Cập nhật connection string app sang database đã restore
 # Rồi restart service
 sudo systemctl restart my-app`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Kết nối vào database và kiểm tra dữ liệu trông đúng không: <code>psql -c \'SELECT count(*) FROM users;\'</code>. Số lượng rows phải khớp với lượng dữ liệu production mong đợi. Kiểm tra thêm một vài bản ghi để xác nhận tính toàn vẹn.',
             },
             {
               type: 'callout',

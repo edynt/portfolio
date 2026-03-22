@@ -236,6 +236,12 @@ kubectl delete pod my-app`,
             },
             {
               type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After <code>kubectl apply -f pod.yaml</code>, confirm the Pod is running:<br><br><code>kubectl get pods</code><br><br>Expected output:<pre>NAME     READY   STATUS    RESTARTS   AGE\nmy-app   1/1     Running   0          15s</pre>If status is <code>ContainerCreating</code>, wait a few seconds and re-run. For more detail: <code>kubectl describe pod my-app</code>.',
+            },
+            {
+              type: 'callout',
               variant: 'warn',
               title: "Don't deploy Pods directly",
               html: 'In practice, <strong>never</strong> create Pods directly. Use a <strong>Deployment</strong> instead — it manages Pods, restarts on crash, and supports rolling updates.',
@@ -307,6 +313,12 @@ kubectl rollout undo deployment/my-app`,
             },
             {
               type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After <code>kubectl apply -f deployment.yaml</code>, confirm all replicas are running:<br><br><code>kubectl get deployments</code><br><code>kubectl get pods</code><br><br>Expected output:<pre>NAME     READY   UP-TO-DATE   AVAILABLE\nmy-app   3/3     3            3</pre>All pods should show <code>1/1 Running</code>. Inspect a pod with <code>kubectl describe pod &lt;pod-name&gt;</code> if any show errors.',
+            },
+            {
+              type: 'callout',
               variant: 'tip',
               title: 'Resource Requests & Limits',
               html: 'Always set <code>resources.requests</code> (minimum) and <code>resources.limits</code> (maximum) for CPU and memory. The Scheduler uses requests to select a Node; limits prevent a container from consuming too many resources.',
@@ -364,6 +376,12 @@ kubectl get services
 minikube service my-app-service --url
 # http://192.168.49.2:30080`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After <code>kubectl apply -f service.yaml</code>, confirm the Service is created and has correct endpoints:<br><br><code>kubectl get services</code><br><code>kubectl get endpoints my-app-service</code><br><br>The endpoints list should show Pod IPs — if it is empty, the Service selector labels do not match the Pod labels. Use <code>kubectl describe service my-app-service</code> to inspect.',
+            },
           ],
         },
         {
@@ -394,6 +412,12 @@ kubectl get all -n staging
 
 # Set default namespace for context
 kubectl config set-context --current --namespace=staging`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After <code>kubectl create namespace staging</code>, confirm it exists:<br><br><code>kubectl get namespaces</code><br><br>Expected: <code>staging</code> appears with <code>Active</code> status. Then verify your deployment landed in the correct namespace: <code>kubectl get all -n staging</code>.',
             },
             {
               type: 'callout',
@@ -500,6 +524,12 @@ kubectl get services
 
 # Open in browser
 minikube service node-app-service`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After <code>kubectl apply -f k8s-app.yaml</code>, both pods should reach <code>Running</code> state within ~30 seconds. Confirm with:<br><br><code>kubectl get pods -w</code><br><br>Then get the app URL and test it:<br><code>minikube service node-app-service --url</code><br><br>Open the printed URL in your browser — you should see your Node.js app respond.',
             },
           ],
         },
@@ -750,6 +780,79 @@ kubectl describe node <node-name>`,
               variant: 'tip',
               title: 'Cleanup when done',
               html: 'Delete all resources: <code>kubectl delete all --all</code>. Stop Minikube: <code>minikube stop</code>. Delete cluster entirely: <code>minikube delete</code>.',
+            },
+          ],
+        },
+        {
+          id: 'troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Common Kubernetes issues and solutions',
+          icon: '🩺',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Pod stuck in ImagePullBackOff</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Wrong image name or tag, or the image is in a private registry and the cluster has no credentials to pull it.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Double-check the image name and tag in your Deployment spec. For private registries, create an <code>imagePullSecrets</code> entry: <code>kubectl create secret docker-registry regcred --docker-server=... --docker-username=... --docker-password=...</code> and reference it in the Pod spec.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Pod stuck in CrashLoopBackOff</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The application inside the container is crashing on startup — due to a bug, missing env variable, failed health check, or misconfigured command.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Inspect logs from the last crash: <code>kubectl logs &lt;pod&gt; --previous</code>. Get full Pod details and events: <code>kubectl describe pod &lt;pod&gt;</code>. Fix the root cause in your app or Deployment config, then re-apply.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Service not accessible</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The Service selector labels do not match the Pod labels, or the <code>targetPort</code> does not match the port the container listens on — so the Service has no endpoints.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Verify labels match between Service selector and Pod template: <code>kubectl get pods --show-labels</code>. Check endpoints: <code>kubectl get endpoints &lt;service-name&gt;</code> — it must not be empty. Confirm <code>targetPort</code> matches <code>containerPort</code> in the Deployment.',
+            },
+            {
+              type: 'text',
+              html: '<strong>PersistentVolumeClaim stuck in Pending</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'No PersistentVolume matches the PVC request — either no PV has been provisioned, the <code>storageClassName</code> is wrong, or the requested storage size exceeds available PVs.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'List available PVs: <code>kubectl get pv</code>. Check the PVC spec matches a PV in terms of <code>storageClassName</code>, access modes, and size. On Minikube, use <code>storageClassName: standard</code> (the default provisioner) or leave <code>storageClassName</code> unset.',
             },
           ],
         },

@@ -79,6 +79,12 @@ jobs:
           echo "Commit: \${{ github.sha }}"
           echo "Actor: \${{ github.actor }}"`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau khi push lên <code>main</code>, vào repository trên GitHub → <strong>tab Actions</strong>. Bạn sẽ thấy workflow "Hello World" đang chạy. Click vào để xem log từng bước và xác nhận tất cả bước đều có dấu tích xanh.',
+            },
           ],
         },
       ],
@@ -140,6 +146,12 @@ jobs:
               variant: 'tip',
               title: 'Matrix Builds',
               html: 'Strategy <code>matrix</code> chạy job song song cho từng combination. Test trên Node 18 và 20 cùng lúc giúp phát hiện lỗi theo version trước khi lên production.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Mở một Pull Request vào <code>main</code> — workflow CI sẽ tự động kích hoạt. Trong <strong>tab Actions</strong>, bạn sẽ thấy hai job chạy song song: một cho Node 18.x và một cho 20.x. Cả hai phải có dấu tích xanh trước khi PR được merge.',
             },
           ],
         },
@@ -274,6 +286,12 @@ jobs:
             --service \${{ env.ECS_SERVICE }} \\
             --force-new-deployment`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Sau khi workflow hoàn thành, kiểm tra <strong>tab Actions</strong> — tất cả bước phải có màu xanh. Sau đó xác nhận deployment trên AWS: vào <strong>ECS → Clusters → cluster của bạn → Tasks</strong> và kiểm tra revision task mới đang chạy. Mở URL ứng dụng để xác nhận code mới nhất đã live.',
+            },
           ],
         },
         {
@@ -342,6 +360,12 @@ jobs:
               title: 'Cache Headers',
               html: 'Flag <code>--cache-control</code> đặt browser cache dài hạn (1 năm) cho các tài nguyên có hash. Nếu dùng CloudFront, cần thêm bước invalidation sau khi sync.',
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Kiểm tra <strong>tab Actions</strong> — workflow "Deploy Frontend" phải hoàn thành thành công. Sau đó mở S3 bucket trong AWS Console và xác nhận các file build mới đã có mặt. Mở URL deployment (S3 static website hoặc CloudFront distribution) để kiểm tra phiên bản mới nhất đã live.',
+            },
           ],
         },
         {
@@ -361,6 +385,95 @@ jobs:
                 { icon: '🔄', title: 'Tái sử dụng với workflow_call', description: 'Trích xuất jobs chung thành reusable workflows để tránh lặp code.' },
                 { icon: '⏰', title: 'Đặt job timeout', description: 'Thêm timeout-minutes: 10 cho jobs để tránh hóa đơn bị thổi phồng do process bị treo.' },
               ],
+            },
+          ],
+        },
+        {
+          id: 'gha-troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Các lỗi thường gặp và cách khắc phục',
+          icon: '🔍',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Workflow không kích hoạt</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Tên branch trong trigger <code>on.push.branches</code> không khớp với branch mặc định thực tế của repo, hoặc có lỗi cú pháp YAML khiến GitHub không parse được file workflow.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Kiểm tra <code>branches: [main]</code> có khớp với branch mặc định của repo không (một số repo dùng <code>master</code>). Dùng YAML validator để kiểm tra cú pháp. Đảm bảo file workflow nằm trong <code>.github/workflows/</code> với phần mở rộng <code>.yml</code> hoặc <code>.yaml</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Secret không có trong workflow</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Tên secret bị nhập sai, hoặc secret được thêm ở scope sai (organization-level vs repository-level). Secrets từ fork cũng không khả dụng trong pull request workflow theo mặc định.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Vào <strong>Settings → Secrets and variables → Actions</strong> và xác nhận tên secret chính xác. Tham chiếu trong workflow phải khớp hoàn toàn: <code>${{ secrets.AWS_ACCESS_KEY_ID }}</code>. Kiểm tra xem đó là repository secret hay environment secret (environment secret yêu cầu <code>environment:</code> được đặt trên job).',
+            },
+            {
+              type: 'text',
+              html: '<strong>Docker build thất bại trong CI</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Lệnh <code>COPY</code> trong Dockerfile tham chiếu các file nằm ngoài build context, hoặc <code>.dockerignore</code> vô tình loại trừ những file cần thiết trong quá trình build.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Xem lại <code>.dockerignore</code> để đảm bảo các file cần thiết không bị loại trừ. Đặt <code>working-directory</code> trong bước workflow về đúng thư mục nếu dùng monorepo. Truyền đúng đường dẫn build context cho lệnh <code>docker build</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Bước deploy thành công nhưng app không được cập nhật</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'ECS service không force deploy task revision mới sau khi Docker image mới được push lên ECR. ECS có thể vẫn đang chạy task cũ nếu không phát hiện thay đổi trong task definition.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Thêm flag <code>--force-new-deployment</code> vào lệnh <code>aws ecs update-service</code>. Điều này buộc ECS khởi động task mới với image mới nhất ngay cả khi task definition chưa thay đổi.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Permission denied trong workflow</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Workflow thiếu block <code>permissions</code>, hoặc thiếu bước <code>actions/checkout</code>, khiến runner không có quyền truy cập nội dung repository hoặc yêu cầu tokens.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Thêm block <code>permissions</code> vào job với các scope cần thiết. Để xác thực AWS qua OIDC, thêm <code>id-token: write</code> và <code>contents: read</code>. Luôn đặt <code>actions/checkout@v4</code> là bước đầu tiên để runner có thể truy cập code của bạn.',
             },
           ],
         },

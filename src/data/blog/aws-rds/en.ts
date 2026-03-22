@@ -74,7 +74,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'info',
               title: 'Prerequisites',
-              html: '<ul><li>AWS Account (with credit card registered)</li><li>Region: <code>us-east-1</code> (N. Virginia) — or your preferred region</li><li>Time: ~15-20 minutes</li></ul>',
+              html: '<ul><li>AWS Account (with credit card registered)</li><li>Region: <code>ap-southeast-1</code> (Singapore) — or your preferred region</li><li>Time: ~15-20 minutes</li></ul>',
             },
           ],
         },
@@ -335,7 +335,7 @@ const tutorial: Tutorial = {
               type: 'step-list',
               items: [
                 'Go to RDS → Databases → <code>dev-postgres</code>',
-                'Copy the <strong>Endpoint</strong> (e.g., <code>dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com</code>)',
+                'Copy the <strong>Endpoint</strong> (e.g., <code>dev-postgres.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com</code>)',
                 'Port: <code>5432</code> (default PostgreSQL)',
                 'Database: <code>devdb</code> (the initial database name)',
                 'Username: <code>postgres</code>',
@@ -355,7 +355,7 @@ const tutorial: Tutorial = {
 # Ubuntu: sudo apt install postgresql-client
 
 # Connect to RDS
-psql -h dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com \\
+psql -h dev-postgres.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com \\
      -p 5432 \\
      -U postgres \\
      -d devdb
@@ -371,10 +371,10 @@ psql -h dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com \\
               lang: 'bash',
               filename: '.env',
               code: `# PostgreSQL connection string format
-DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com:5432/devdb
+DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@dev-postgres.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com:5432/devdb
 
 # With SSL (recommended)
-DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com:5432/devdb?sslmode=require`,
+DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@dev-postgres.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com:5432/devdb?sslmode=require`,
             },
             {
               type: 'text',
@@ -385,7 +385,7 @@ DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@dev-postgres.xxxxxxxxxxxx.us-ea
               caption: 'Connection Settings for GUI Tools',
               headers: ['Field', 'Value'],
               rows: [
-                ['Host', '<code>dev-postgres.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com</code>'],
+                ['Host', '<code>dev-postgres.xxxxxxxxxxxx.ap-southeast-1.rds.amazonaws.com</code>'],
                 ['Port', '<code>5432</code>'],
                 ['Database', '<code>devdb</code>'],
                 ['Username', '<code>postgres</code>'],

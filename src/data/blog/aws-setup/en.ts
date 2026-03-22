@@ -48,7 +48,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'info',
               title: 'Important Note',
-              html: '<ul><li><strong>Region:</strong> <code>us-east-1</code> (N. Virginia) — or your chosen region, but must be <strong>consistent</strong> for all services</li><li><strong>Time:</strong> ~30-45 minutes</li><li>Don\'t use CodeBuild — GitHub Actions builds directly, simpler and free 2000 min/month</li></ul>',
+              html: '<ul><li><strong>Region:</strong> <code>ap-southeast-1</code> (Singapore) — or your chosen region, but must be <strong>consistent</strong> for all services</li><li><strong>Time:</strong> ~30-45 minutes</li><li>Don\'t use CodeBuild — GitHub Actions builds directly, simpler and free 2000 min/month</li></ul>',
             },
           ],
         },
@@ -333,7 +333,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'info',
               title: 'Example with real values',
-              html: 'For account <code>093468662880</code> and region <code>us-east-1</code>:<br/><code>executionRoleArn: arn:aws:iam::093468662880:role/ecsTaskExecutionRole</code><br/><code>image: 093468662880.dkr.ecr.us-east-1.amazonaws.com/ecr-backend:latest</code>',
+              html: 'For account <code>093468662880</code> and region <code>ap-southeast-1</code>:<br/><code>executionRoleArn: arn:aws:iam::093468662880:role/ecsTaskExecutionRole</code><br/><code>image: 093468662880.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-backend:latest</code>',
             },
             {
               type: 'table',
@@ -519,7 +519,7 @@ const tutorial: Tutorial = {
               rows: [
                 ['<code>AWS_ACCESS_KEY_ID</code>', 'Access Key from Step 1'],
                 ['<code>AWS_SECRET_ACCESS_KEY</code>', 'Secret Key from Step 1'],
-                ['<code>AWS_REGION</code>', '<code>us-east-1</code> (or your chosen region)'],
+                ['<code>AWS_REGION</code>', '<code>ap-southeast-1</code> (or your chosen region)'],
                 ['<code>ECS_SERVICE</code>', 'Service name from Step 5 (e.g. <code>ecr-backend-service</code>)'],
               ],
             },
@@ -541,7 +541,7 @@ const tutorial: Tutorial = {
               rows: [
                 ['<code>AWS_ACCESS_KEY_ID</code>', 'Access Key from Step 1'],
                 ['<code>AWS_SECRET_ACCESS_KEY</code>', 'Secret Key from Step 1'],
-                ['<code>AWS_REGION</code>', '<code>us-east-1</code>'],
+                ['<code>AWS_REGION</code>', '<code>ap-southeast-1</code>'],
                 ['<code>AWS_S3_BUCKET_NAME</code>', '<code>ecr-frontend-{your-name}</code>'],
                 ['<code>VITE_API_URL</code>', '<code>http://{EC2-PUBLIC-IP}:3000</code>'],
               ],
@@ -680,7 +680,7 @@ const tutorial: Tutorial = {
               type: 'callout',
               variant: 'danger',
               title: 'Cause',
-              html: 'ECR in <code>us-east-1</code> but ECS in <code>ap-southeast-1</code> (or vice versa)',
+              html: 'ECR in <code>ap-southeast-1</code> but ECS in <code>ap-southeast-1</code> (or vice versa)',
             },
             {
               type: 'callout',

@@ -2,8 +2,8 @@ import type { Tutorial } from '@/types/tutorial';
 
 const tutorial: Tutorial = {
   id: 'linux-server-setup',
-  title: 'Linux Server Setup',
-  description: 'Cài đặt Ubuntu server: SSH, firewall, Nginx, SSL và bảo mật cơ bản',
+  title: 'EC2 Server Setup',
+  description: 'Cài đặt EC2 Ubuntu server: SSH, firewall, Nginx, SSL và bảo mật cơ bản',
   icon: '🖥',
   chapters: [
     {
@@ -60,6 +60,12 @@ sudo whoami
 # PubkeyAuthentication yes
 
 sudo systemctl restart sshd`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Test SSH trong một <strong>terminal MỚI</strong> trước khi đóng session hiện tại. Chạy <code>ssh deploy@YOUR_SERVER_IP</code> trong cửa sổ thứ hai — xác nhận đăng nhập được trước khi đóng cửa sổ đầu tiên. Nếu bị khóa, dùng VPS console.',
             },
           ],
         },
@@ -125,6 +131,12 @@ sudo ufw status verbose`,
               variant: 'danger',
               title: 'Cho phép SSH trước khi bật!',
               html: 'Nếu bật UFW mà chưa cho phép port 22 (SSH), bạn sẽ bị khóa khỏi server vĩnh viễn. Chạy <code>sudo ufw allow OpenSSH</code> trước.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy <code>sudo ufw status verbose</code> để xác nhận tất cả rules đã có hiệu lực. Bạn sẽ thấy port 22, 80 và 443 được liệt kê với trạng thái ALLOW.',
             },
             {
               type: 'table',
@@ -210,6 +222,12 @@ sudo nginx -t
 # Reload Nginx
 sudo systemctl reload nginx`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Chạy <code>sudo nginx -t</code> trước khi reload. Bạn sẽ thấy <code>syntax is ok</code> và <code>test is successful</code>. Chỉ reload khi cả hai dòng đều xanh.',
+            },
           ],
         },
         {
@@ -233,6 +251,12 @@ sudo certbot renew --dry-run
 
 # Kiểm tra timer gia hạn
 sudo systemctl status certbot.timer`,
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Truy cập <code>https://your-domain.com</code> trên trình duyệt và kiểm tra certificate. Click vào biểu tượng ổ khóa — cert phải được cấp bởi Let\'s Encrypt và hợp lệ cho domain của bạn.',
             },
             {
               type: 'callout',
@@ -307,6 +331,85 @@ sudo journalctl -u my-app -f`,
                 ['journalctl -u my-app -f', 'Xem logs realtime'],
                 ['journalctl -u my-app --since "1 hour ago"', 'Logs từ 1 giờ trước'],
               ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'chapter4',
+      title: 'Troubleshooting',
+      sections: [
+        {
+          id: 'troubleshooting',
+          title: 'Lỗi phổ biến & Cách khắc phục',
+          subtitle: 'Giải pháp cho các vấn đề thường gặp nhất khi setup server',
+          icon: '🔧',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Bị khóa khỏi SSH</strong> — Không thể kết nối sau khi thay đổi cấu hình SSH.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Bạn đã thay đổi SSH port hoặc sửa <code>sshd_config</code> mà không test trên terminal mới trước. Config mới có thể có lỗi cú pháp hoặc chặn key của bạn.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Dùng web console của VPS provider (ví dụ: DigitalOcean Console, AWS SSM). Đăng nhập qua console, chạy <code>sudo nano /etc/ssh/sshd_config</code> để sửa config, rồi <code>sudo systemctl restart sshd</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Nginx hiển thị 502 Bad Gateway</strong> — Nginx đang chạy nhưng trả về 502 cho mọi request.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Backend app không chạy, hoặc port trong <code>proxy_pass</code> của Nginx config không khớp với port app đang lắng nghe.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Chạy <code>sudo systemctl status my-app</code> để kiểm tra backend có đang hoạt động không. Xác nhận port trong Nginx config: <code>grep proxy_pass /etc/nginx/sites-enabled/my-app</code>. Restart app nếu cần: <code>sudo systemctl start my-app</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Gia hạn SSL certificate thất bại</strong> — Certbot renew báo lỗi.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Port 80 bị UFW chặn, hoặc Nginx chưa được cấu hình đúng để phục vụ path <code>.well-known/acme-challenge</code> mà Let\'s Encrypt dùng để xác minh domain.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Đảm bảo UFW cho phép port 80: <code>sudo ufw allow 80/tcp</code>. Xác nhận certbot Nginx plugin đã cài: <code>sudo apt install python3-certbot-nginx</code>. Rồi thử lại: <code>sudo certbot renew --dry-run</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>UFW chặn traffic hợp lệ</strong> — Một service không thể truy cập dù đã cấu hình.',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Rule UFW cho port cần thiết chưa được thêm, hoặc được thêm với số port sai.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Kiểm tra rules hiện tại: <code>sudo ufw status</code>. Nếu thiếu port, thêm vào: <code>sudo ufw allow PORT/tcp</code>. Ví dụ: <code>sudo ufw allow 8080/tcp</code>.',
             },
           ],
         },

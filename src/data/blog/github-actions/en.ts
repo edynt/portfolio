@@ -79,6 +79,12 @@ jobs:
           echo "Commit: \${{ github.sha }}"
           echo "Actor: \${{ github.actor }}"`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After pushing to <code>main</code>, go to your repository on GitHub → <strong>Actions tab</strong>. You should see the "Hello World" workflow running. Click on it to see the step-by-step logs and confirm all steps pass with a green checkmark.',
+            },
           ],
         },
       ],
@@ -140,6 +146,12 @@ jobs:
               variant: 'tip',
               title: 'Matrix Builds',
               html: 'The <code>matrix</code> strategy runs your job once for each combination. Testing on Node 18 and 20 in parallel catches version-specific bugs before they reach production.',
+            },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Open a Pull Request against <code>main</code> — the CI workflow should trigger automatically. In the <strong>Actions tab</strong>, you will see two parallel jobs: one for Node 18.x and one for 20.x. Both must show a green checkmark before the PR can be merged.',
             },
           ],
         },
@@ -274,6 +286,12 @@ jobs:
             --service \${{ env.ECS_SERVICE }} \\
             --force-new-deployment`,
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'After the workflow completes, check the <strong>Actions tab</strong> — all steps should be green. Then confirm the deployment in AWS: go to <strong>ECS → Clusters → your cluster → Tasks</strong> and verify a new task revision is running. Test your application URL to confirm the latest code is live.',
+            },
           ],
         },
         {
@@ -342,6 +360,12 @@ jobs:
               title: 'Cache Headers',
               html: 'The <code>--cache-control</code> flag sets long-lived browser cache (1 year) for hashed assets. If using CloudFront, you should also add an invalidation step after syncing.',
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Check the <strong>Actions tab</strong> — the "Deploy Frontend" workflow should complete successfully. Then open your S3 bucket in the AWS Console and confirm the new build files are present. Open your deployment URL (S3 static website or CloudFront distribution) to verify the latest version is live.',
+            },
           ],
         },
         {
@@ -361,6 +385,95 @@ jobs:
                 { icon: '🔄', title: 'Reuse with workflow_call', description: 'Extract common jobs into reusable workflows to avoid duplication.' },
                 { icon: '⏰', title: 'Set job timeouts', description: 'Add timeout-minutes: 10 to jobs to prevent runaway bills from hung processes.' },
               ],
+            },
+          ],
+        },
+        {
+          id: 'gha-troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Common issues and how to fix them',
+          icon: '🔍',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Workflow not triggering</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The branch name in the <code>on.push.branches</code> trigger does not match your actual default branch, or there is a YAML syntax error that prevents GitHub from parsing the workflow file.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Verify that <code>branches: [main]</code> matches your repository\'s default branch name (some repos use <code>master</code>). Use a YAML validator to check syntax. Also confirm the workflow file is in <code>.github/workflows/</code> with a <code>.yml</code> or <code>.yaml</code> extension.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Secret not available in workflow</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The secret name has a typo, or the secret was added at the wrong scope (organization-level vs repository-level). Secrets from forks are also not available in pull request workflows by default.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Go to <strong>Settings → Secrets and variables → Actions</strong> and verify the exact secret name. The reference in the workflow must match exactly: <code>${{ secrets.AWS_ACCESS_KEY_ID }}</code>. Check whether it is a repository secret or an environment secret (environment secrets require <code>environment:</code> to be set on the job).',
+            },
+            {
+              type: 'text',
+              html: '<strong>Docker build fails in CI</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The Dockerfile <code>COPY</code> instruction references files outside the build context, or <code>.dockerignore</code> is accidentally excluding files that are needed during the build.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Review your <code>.dockerignore</code> to ensure required files are not excluded. Set <code>working-directory</code> in the workflow step to the correct directory if using a monorepo. Pass the correct build context path to <code>docker build</code>.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Deploy step succeeds but app not updated</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The ECS service is not force-deploying a new task revision after the new Docker image is pushed to ECR. ECS may still be running the old task if no task definition change is detected.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Add the <code>--force-new-deployment</code> flag to the <code>aws ecs update-service</code> command. This forces ECS to start a new task with the latest image even if the task definition has not changed.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Permission denied in workflow</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The workflow is missing a <code>permissions</code> block, or the <code>actions/checkout</code> step is absent, causing the runner to lack access to the repository contents or to request tokens.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Add a <code>permissions</code> block to the job with the required scopes. For OIDC-based AWS auth, add <code>id-token: write</code> and <code>contents: read</code>. Always include <code>actions/checkout@v4</code> as the first step so the runner has access to your code.',
             },
           ],
         },

@@ -534,6 +534,12 @@ const tutorial: Tutorial = {
               lang: 'bash',
               code: '✔ Service deployed to stack my-lambda-api-dev (45s)\n\nendpoints:\n  GET - https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello\n  GET - https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello/{name}\n\nfunctions:\n  hello: my-lambda-api-dev-hello\n  greet: my-lambda-api-dev-greet',
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Verify',
+              html: 'Test the endpoints immediately after deploy:<br/><code>curl https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello</code><br/>Expected response: <code>{"message":"Hello from AWS Lambda! 🎉"}</code><br/><br/>Or open the URL in your browser. A <strong>200 response</strong> with JSON body confirms the deployment succeeded.',
+            },
           ],
         },
         {
@@ -800,6 +806,95 @@ const tutorial: Tutorial = {
               variant: 'warn',
               title: 'Clean up to avoid charges',
               html: 'If no longer needed: <code>serverless remove</code> to delete all resources. Also delete the deployment S3 bucket in the Console.',
+            },
+          ],
+        },
+        {
+          id: 'aws-troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Common issues and how to fix them',
+          icon: '🔍',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Deployment fails: Access Denied</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The IAM user is missing one or more required permissions to create Lambda functions, API Gateway, CloudFormation stacks, S3 buckets, or CloudWatch log groups.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'For development: attach <code>AdministratorAccess</code> to the IAM user (easiest). For production: create a custom policy with permissions for Lambda, API Gateway, CloudFormation, S3, CloudWatch, IAM, and SSM.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Function timeout</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Default Lambda timeout is 6 seconds. If your function takes longer (DB queries, external APIs, cold start) it will be killed with a timeout error.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Increase timeout in <code>serverless.yml</code>: add <code>timeout: 30</code> under the function config (max 900s). Optimize code by moving heavy initialization outside the handler. Use provisioned concurrency for latency-critical functions to eliminate cold starts.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Module not found at runtime</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Dependencies are not included in the deployment package. This often happens when <code>node_modules</code> is excluded or the bundler is not configured correctly.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Check what is inside the <code>.serverless</code> package to confirm <code>node_modules</code> are bundled. Use <code>serverless-esbuild</code> or <code>serverless-webpack</code> to bundle all dependencies into a single file, eliminating runtime module resolution issues.',
+            },
+            {
+              type: 'text',
+              html: '<strong>API Gateway returns 502 Bad Gateway</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'The Lambda handler is returning a response in the wrong format. API Gateway requires a specific response shape and will return 502 if the Lambda output does not match.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Ensure every response includes all required fields: <code>statusCode</code> (number), <code>body</code> (string — use <code>JSON.stringify()</code>), and <code>headers</code> (object). Example: <code>{ statusCode: 200, headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }</code>',
+            },
+            {
+              type: 'text',
+              html: '<strong>Cold start too slow</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Cause',
+              html: 'Large bundle size or heavy initialization code (DB connections, SDK clients) running on every cold start significantly increases first-request latency.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Minimize dependencies — only import what you need. Lazy-load heavy modules inside the handler instead of at the top of the file. Use <code>esbuild</code> for tree-shaking to reduce bundle size. For critical functions, enable <strong>Provisioned Concurrency</strong> to keep instances warm.',
             },
           ],
         },

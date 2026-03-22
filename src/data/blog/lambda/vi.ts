@@ -534,6 +534,12 @@ const tutorial: Tutorial = {
               lang: 'bash',
               code: '✔ Service deployed to stack my-lambda-api-dev (45s)\n\nendpoints:\n  GET - https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello\n  GET - https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello/{name}\n\nfunctions:\n  hello: my-lambda-api-dev-hello\n  greet: my-lambda-api-dev-greet',
             },
+            {
+              type: 'callout',
+              variant: 'ok',
+              title: 'Kiểm tra',
+              html: 'Test các endpoints ngay sau khi deploy:<br/><code>curl https://abc123xyz.execute-api.ap-southeast-1.amazonaws.com/dev/hello</code><br/>Kết quả mong đợi: <code>{"message":"Xin chào từ AWS Lambda! 🎉"}</code><br/><br/>Hoặc mở URL trên trình duyệt. <strong>Response 200</strong> với JSON body xác nhận deploy thành công.',
+            },
           ],
         },
         {
@@ -800,6 +806,95 @@ const tutorial: Tutorial = {
               variant: 'warn',
               title: 'Dọn dẹp để tránh charge',
               html: 'Nếu không dùng nữa: <code>serverless remove</code> để xóa toàn bộ resources. Xóa cả S3 bucket deployment trên Console.',
+            },
+          ],
+        },
+        {
+          id: 'aws-troubleshooting',
+          title: 'Troubleshooting',
+          subtitle: 'Các lỗi thường gặp và cách khắc phục',
+          icon: '🔍',
+          iconColor: 'bg-red-100',
+          blocks: [
+            {
+              type: 'text',
+              html: '<strong>Deploy thất bại: Access Denied</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'IAM user thiếu một hoặc nhiều permissions cần thiết để tạo Lambda functions, API Gateway, CloudFormation stacks, S3 buckets, hoặc CloudWatch log groups.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Khi phát triển: gắn <code>AdministratorAccess</code> vào IAM user (đơn giản nhất). Khi production: tạo custom policy với permissions cho Lambda, API Gateway, CloudFormation, S3, CloudWatch, IAM, và SSM.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Function timeout</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Timeout mặc định của Lambda là 6 giây. Nếu function chạy lâu hơn (query DB, gọi API ngoài, cold start) sẽ bị kill với lỗi timeout.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Tăng timeout trong <code>serverless.yml</code>: thêm <code>timeout: 30</code> vào config của function (tối đa 900s). Tối ưu code bằng cách đưa các khởi tạo nặng ra ngoài handler. Dùng Provisioned Concurrency cho các function quan trọng để loại bỏ cold start.',
+            },
+            {
+              type: 'text',
+              html: '<strong>Module not found khi chạy</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Dependencies không được đưa vào deployment package. Thường xảy ra khi <code>node_modules</code> bị loại trừ hoặc bundler chưa được cấu hình đúng.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Kiểm tra nội dung package <code>.serverless</code> để xác nhận <code>node_modules</code> đã được bundle. Dùng <code>serverless-esbuild</code> hoặc <code>serverless-webpack</code> để đóng gói tất cả dependencies vào một file, tránh lỗi module resolution khi chạy.',
+            },
+            {
+              type: 'text',
+              html: '<strong>API Gateway trả về 502 Bad Gateway</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Lambda handler trả về response sai định dạng. API Gateway yêu cầu response có cấu trúc cụ thể và sẽ trả về 502 nếu output của Lambda không đúng.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Đảm bảo mọi response đều có đủ các trường bắt buộc: <code>statusCode</code> (number), <code>body</code> (string — dùng <code>JSON.stringify()</code>), và <code>headers</code> (object). Ví dụ: <code>{ statusCode: 200, headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }</code>',
+            },
+            {
+              type: 'text',
+              html: '<strong>Cold start quá chậm</strong>',
+            },
+            {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Nguyên nhân',
+              html: 'Bundle size lớn hoặc code khởi tạo nặng (kết nối DB, SDK clients) chạy mỗi lần cold start làm tăng đáng kể độ trễ cho request đầu tiên.',
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              title: 'Fix',
+              html: 'Giảm thiểu dependencies — chỉ import những gì cần thiết. Lazy-load các module nặng bên trong handler thay vì ở đầu file. Dùng <code>esbuild</code> để tree-shaking giảm bundle size. Với các function quan trọng, bật <strong>Provisioned Concurrency</strong> để giữ instance luôn warm.',
             },
           ],
         },
