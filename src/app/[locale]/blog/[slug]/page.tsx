@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import Navbar from '@/components/navbar';
@@ -9,10 +9,9 @@ import { getTutorial, tutorialIds, type TutorialId } from '@/lib/blog-content';
 export default async function TutorialPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const locale = await getLocale();
+  const { locale, slug } = await params;
   const t = await getTranslations('blog');
 
   if (!tutorialIds.includes(slug as TutorialId)) {

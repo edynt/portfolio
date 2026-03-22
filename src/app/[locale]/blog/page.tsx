@@ -1,10 +1,14 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import Navbar from '@/components/navbar';
 import { BlogCard } from '@/components/blog/blog-card';
 import { tutorialsMeta } from '@/data/blog-metadata';
 
-export default async function BlogPage() {
-  const locale = await getLocale();
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations('blog');
   const isVi = locale === 'vi';
 
