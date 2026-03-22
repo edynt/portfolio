@@ -29,7 +29,7 @@ export function BlogCard({ icon, iconBg, category, categoryColor, href, title, d
     <button
       onClick={handleClick}
       disabled={loading}
-      className="group flex flex-col glass-card rounded-2xl p-4 hover:border-primary-500/30 transition-all duration-200 text-left w-full relative overflow-hidden"
+      className="group flex flex-col glass-card rounded-2xl p-5 hover:border-primary-500/30 transition-all duration-200 text-left w-full relative overflow-hidden cursor-pointer"
     >
       {loading && (
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
@@ -43,33 +43,33 @@ export function BlogCard({ icon, iconBg, category, categoryColor, href, title, d
       )}
 
       {/* Card header */}
-      <div className="flex items-start gap-2.5 mb-3">
-        <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${iconBg} flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm`}>
+      <div className="flex items-center gap-2.5 mb-3">
+        <div className={`w-11 h-11 rounded-lg bg-gradient-to-br ${iconBg} flex items-center justify-center text-white font-bold text-base shrink-0 shadow-sm`}>
           {icon}
         </div>
-        <div className="pt-0.5 min-w-0">
-          <span className={`inline-flex text-[10px] font-semibold px-1.5 py-0.5 rounded-full mb-1 ${categoryColor}`}>
+        <div className="min-w-0">
+          <span className={`inline-flex text-xs font-semibold px-1.5 py-0.5 rounded-full mb-1 ${categoryColor}`}>
             {category}
           </span>
-          <h3 className="font-bold text-theme-primary text-[13px] leading-tight group-hover:text-primary-400 transition-colors">
+          <h3 className="font-bold text-theme-primary text-base leading-tight group-hover:text-primary-400 transition-colors">
             {title}
           </h3>
         </div>
       </div>
 
       {/* Description */}
-      <p className="text-xs text-theme-muted leading-relaxed flex-1 mb-3">{desc}</p>
+      <p className="text-sm text-theme-muted leading-relaxed flex-1 mb-3">{desc}</p>
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-2.5 border-t border-white/10 gap-2">
         <div className="flex flex-wrap gap-1 min-w-0">
           {tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="text-[10px] px-1.5 py-0.5 bg-white/5 text-theme-muted rounded font-medium whitespace-nowrap">
+            <span key={tag} className="text-xs px-1.5 py-0.5 bg-white/5 text-theme-muted rounded font-medium whitespace-nowrap">
               {tag}
             </span>
           ))}
         </div>
-        <span className="text-xs text-theme-muted font-medium shrink-0 group-hover:text-primary-400 transition-colors">
+        <span className="text-sm text-theme-muted font-medium shrink-0 group-hover:text-primary-400 transition-colors">
           {steps} {stepsLabel} →
         </span>
       </div>

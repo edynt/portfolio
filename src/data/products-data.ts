@@ -17,7 +17,7 @@ export const products: Product[] = [
     tagline: "Project-based terminal manager",
     description:
       "Desktop app that groups terminals by project — integrates task boards, Git, and command automation. Manage multiple projects with organized terminal sessions, quick commands, and built-in workflow tools.",
-    icon: "🖥",
+    icon: "https://termoras.vercel.app/icons/128x128.png",
     iconBg: "from-violet-500 to-purple-700",
     url: "https://termoras.vercel.app",
     tags: ["Desktop App", "Terminal", "Git", "Productivity"],

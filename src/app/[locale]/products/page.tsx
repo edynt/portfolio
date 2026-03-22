@@ -49,9 +49,17 @@ export default function ProductsPage() {
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-4">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${product.iconBg} flex items-center justify-center text-2xl shrink-0 shadow-lg`}
+                    className={`w-12 h-12 rounded-xl ${product.icon.startsWith("http") ? "" : `bg-gradient-to-br ${product.iconBg}`} flex items-center justify-center text-2xl shrink-0 shadow-lg overflow-hidden`}
                   >
-                    {product.icon}
+                    {product.icon.startsWith("http") ? (
+                      <img
+                        src={product.icon}
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      product.icon
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">

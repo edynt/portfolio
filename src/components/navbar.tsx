@@ -213,8 +213,8 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass py-4" : "py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border border-transparent ${
+        scrolled ? "glass !border-transparent py-4" : "py-6"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
