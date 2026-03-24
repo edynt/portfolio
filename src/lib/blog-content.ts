@@ -10,7 +10,8 @@ export type TutorialId =
   | 'server-troubleshooting'
   | 'server-backup'
   | 'k8s'
-  | 'devops-edge-cases';
+  | 'devops-edge-cases'
+  | 'git-advanced';
 
 export const tutorialIds: TutorialId[] = [
   'lambda',
@@ -23,6 +24,7 @@ export const tutorialIds: TutorialId[] = [
   'server-backup',
   'k8s',
   'devops-edge-cases',
+  'git-advanced',
 ];
 
 export async function getTutorial(id: TutorialId, locale: 'vi' | 'en'): Promise<Tutorial> {

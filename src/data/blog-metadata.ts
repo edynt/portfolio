@@ -145,4 +145,17 @@ export const tutorialsMeta: TutorialMeta[] = [
     steps: 12,
     tags: ['Interview', 'Nginx', 'Docker', 'Database', 'Security', 'DevOps'],
   },
+  {
+    id: 'git-advanced',
+    icon: '🔀',
+    iconBg: 'from-orange-500 to-red-600',
+    category: 'Git',
+    categoryColor: 'bg-orange-500/10 text-orange-400 border border-orange-500/20',
+    titleVi: 'Git Nâng Cao',
+    titleEn: 'Advanced Git',
+    descVi: 'Cherry-pick, worktree, interactive rebase, bisect, reflog, stash nâng cao — các lệnh Git cứu bạn trong thực tế.',
+    descEn: 'Cherry-pick, worktree, interactive rebase, bisect, reflog, advanced stash — the Git commands that save you in real-world scenarios.',
+    steps: 17,
+    tags: ['Git', 'Cherry-Pick', 'Worktree', 'Rebase', 'Bisect', 'Reflog'],
+  },
 ];
