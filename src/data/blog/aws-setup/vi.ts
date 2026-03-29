@@ -285,6 +285,12 @@ const tutorial: Tutorial = {
               html: 'Nếu dùng UI form, dễ set nhầm Memory = 3 GiB (mặc định) thay vì 450 MiB → t3.micro (1 GB RAM) không đủ → task pending mãi. <strong>Dùng JSON chính xác hơn.</strong>',
             },
             {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Bắt buộc: Tạo ecsTaskExecutionRole trước',
+              html: 'Nếu account chưa có IAM role <code>ecsTaskExecutionRole</code>, tạo task definition sẽ báo lỗi <strong>"Role is not valid"</strong>. Kiểm tra: <strong>IAM → Roles</strong> → tìm <code>ecsTaskExecutionRole</code>. Nếu chưa có, tạo mới:<ol><li><strong>IAM → Roles → Create role</strong></li><li>Trusted entity: <strong>AWS service</strong> → Use case: <strong>Elastic Container Service → Elastic Container Service Task</strong> → Next</li><li>Tìm và attach policy: <code>AmazonECSTaskExecutionRolePolicy</code> → Next</li><li>Role name: <code>ecsTaskExecutionRole</code> → <strong>Create role</strong></li></ol>',
+            },
+            {
               type: 'step-list',
               items: [
                 '<strong>ECS</strong> → menu bên trái → <strong>Task definitions</strong> → <strong>Create new task definition</strong> → chọn <strong>Create new task definition with JSON</strong>',
@@ -351,8 +357,8 @@ const tutorial: Tutorial = {
             {
               type: 'callout',
               variant: 'tip',
-              title: 'Nếu chưa có ecsTaskExecutionRole',
-              html: 'Tạo task definition bằng <strong>UI form</strong> 1 lần → ở phần Task execution role → chọn <strong>Create new role</strong> → tên <code>ecsTaskExecutionRole</code> → xong xoá task definition vừa tạo và tạo lại bằng JSON.',
+              title: 'Cách khác: Tạo role qua ECS UI',
+              html: 'Bạn cũng có thể tạo role bằng cách: <strong>ECS → Task definitions → Create new task definition</strong> (UI form) → ở phần Task execution role → chọn <strong>Create new role</strong> → tự tạo <code>ecsTaskExecutionRole</code>. Sau đó xoá task definition đó và tạo lại bằng JSON ở trên.',
             },
             {
               type: 'callout',

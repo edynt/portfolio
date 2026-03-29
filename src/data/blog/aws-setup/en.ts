@@ -285,6 +285,12 @@ const tutorial: Tutorial = {
               html: 'Using the UI form makes it easy to accidentally set Memory = 3 GiB (default) instead of 450 MiB → t3.micro (1 GB RAM) insufficient → task pending forever. <strong>Use JSON for precision.</strong>',
             },
             {
+              type: 'callout',
+              variant: 'danger',
+              title: 'Required: Create ecsTaskExecutionRole first',
+              html: 'If your account doesn\'t have the <code>ecsTaskExecutionRole</code> IAM role, creating the task definition will fail with <strong>"Role is not valid"</strong>. Check: <strong>IAM → Roles</strong> → search <code>ecsTaskExecutionRole</code>. If not found, create it:<ol><li><strong>IAM → Roles → Create role</strong></li><li>Trusted entity: <strong>AWS service</strong> → Use case: <strong>Elastic Container Service → Elastic Container Service Task</strong> → Next</li><li>Search and attach policy: <code>AmazonECSTaskExecutionRolePolicy</code> → Next</li><li>Role name: <code>ecsTaskExecutionRole</code> → <strong>Create role</strong></li></ol>',
+            },
+            {
               type: 'step-list',
               items: [
                 '<strong>ECS</strong> → left menu → <strong>Task definitions</strong> → <strong>Create new task definition</strong> → select <strong>Create new task definition with JSON</strong>',
@@ -351,8 +357,8 @@ const tutorial: Tutorial = {
             {
               type: 'callout',
               variant: 'tip',
-              title: 'If ecsTaskExecutionRole doesn\'t exist',
-              html: 'Create a task definition via <strong>UI form</strong> once → in Task execution role section → select <strong>Create new role</strong> → name <code>ecsTaskExecutionRole</code> → then delete this task definition and recreate using JSON.',
+              title: 'Alternative: Create role via ECS UI',
+              html: 'You can also create the role by: <strong>ECS → Task definitions → Create new task definition</strong> (UI form) → in Task execution role section → select <strong>Create new role</strong> → this auto-creates <code>ecsTaskExecutionRole</code>. Then delete that task definition and recreate using JSON above.',
             },
             {
               type: 'callout',
